@@ -1,5 +1,5 @@
 #navbar{
-    height:50px;
+    height:65px;
     position:absolute;
     bottom:0px;
     left:0px;
@@ -8,11 +8,26 @@
 }
 @media (prefers-color-scheme: dark){
     #navbar{
-        height:50px;
-        position:absolute;
-        bottom:0px;
-        left:0px;
-        width:100%;
         background-color:rgb(62, 62, 62);
     }
+    .navbaritem{
+        background-image:url(../img/table-dark.svg) !important;
+        background-color:rgb(88, 88, 88) !important;
+    }
+    .navbaritem:active{
+        background-color:rgb(70, 70, 70) !important;
+    }
+}
+.navbaritem{
+    margin: 10px;
+    width:45px;
+    height:45px;
+    display:inline-block;
+    background-image:url(../img/table-light.svg);
+    background-size:cover;
+    border-radius:3px;
+    background-color:whitesmoke;
+}
+.navbaritem:active{
+    background-color:rgb(171, 171, 171);
 }
