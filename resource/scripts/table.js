@@ -4,6 +4,7 @@ class TableElement{
         if(islocaltime){
             mydate = new Date();
             this.utcdifference = (mydate.getHours()+timedifference) - mydate.getUTCHours();
+            this.utcminutedifference
         } else {
             this.utcdifference = timedifference;
         }
@@ -14,13 +15,14 @@ class TableElement{
      * @param {Date} time 
      */
     getTime(time){
-        var newhours = time.getHours()+this.utcdifference();
+        var newhours = time.getUTCHours()+this.utcdifference();
         var mydate = new Date()
         if(newhours > 23){
             newhours-=23
         }
         mydate.setHours(newhours);
-        mydate.setMinutes(time.getMinutes());
+        mydate.set
+        mydate.setMinutes(time.getUTCMinutes());
         mydate.setSeconds(time.getSeconds());
         return newhours
     }
