@@ -70,6 +70,17 @@ class Time{
                 hours:theargs[6],
                 minute:theargs[7]
             }
+        } else if(theargs.length == 0){
+            var thedate = new Date()
+            this.hour = thedate.getHours()
+            this.minute = thedate.getMinutes()
+            this.second = thedate.getSeconds()
+            this.date = thedate.getDate()
+            this.month = thedate.getMonth()
+            this.year = thedate.getYear()
+            this.timezoneoffset = {
+                hours:thedate.get
+            }
         }
     }
 }
