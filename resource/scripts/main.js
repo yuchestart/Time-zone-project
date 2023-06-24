@@ -9,7 +9,7 @@ function $(x,parent){
     }
 }
 function main(){
-    new Time()
+    new Time();
 }
 window.onload = main;
 class Time{
@@ -82,5 +82,18 @@ class Time{
                 hours:thedate.get
             }
         }
+    }
+    /**
+     * 
+     * @param {Time} time 
+     */
+    calculateTimezoneOffset(time){
+        timezoneoffset = {
+            hours:this.timezoneoffset.hours - time.timezoneoffset.hours,
+            minutes:this.timezoneoffset.minutes - time.timezoneoffset.minutes
+        }
+        var danewtime = new Time()
+
+
     }
 }
