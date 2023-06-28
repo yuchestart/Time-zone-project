@@ -10,7 +10,6 @@ function $(x,parent){
 }
 
 function main(){
-    
+    alert("HI")
 }
-
-window.onload = main;
+main()
