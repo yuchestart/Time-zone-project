@@ -47,7 +47,7 @@ class Time{
             this.year = dadate.getFullYear();
             var timezoneoffset = Math.abs(dadate.getTimezoneOffset());
             this.timezoneminutes = timezoneoffset%60
-            this.timezonehours = (timezoneoffset-timezoneminutes)/60
+            this.timezonehours = (timezoneoffset-this.timezoneminutes)/60
             this.timezonepositive = dadate.getTimezoneOffset()<0;
         }
     }
@@ -80,24 +80,27 @@ class Time{
     wrapTime(h,m,dd,mm,yy){
         var wraparound;
         if(m<0||m>59){
-            wraparound = (m-(m%59))/m
+            wraparound = (m-Math.abs(m%59))/m
             h += m<0?-wraparound:wraparound
-            m = Math.abs(m%59)
+            m = Math.abs(59-m%59)
         }
         if(h<0||h>23){
-            wraparound = (h-(h%23))/h
+            wraparound = (h-Math.abs(h%23))/h
             dd += h<0?-wraparound:wraparound
-            h = Math.abs(h%23)
+            h = Math.abs(23-h%23)
         }
-        if(dd<=0||dd>isleapyear(yy)?leapmonthdays[mm]:monthdays[mm]){
-            tempm = mm+0;
+        var tempm = mm+0;
+        var nowmonthdays = isleapyear(yy)?leapmonthdays[tempm]:monthdays[tempm]
+        if(dd<=0||dd>nowmonthdays){
             mm += d<=0?-1:1;
-            d = Math.abs(d%isleapyear(yy)?leapmonthdays[tempm]:monthdays[tempm])
+            var nowmonthdays = isleapyear(yy)?leapmonthdays[tempm]:monthdays[tempm]
+            d = Math.abs(nowmonthdays-d%nowmonthdays)
         }
         if(mm<=0||mm>12){
             yy += mm<=0?-1:1;
             mm = mm%12;
         }
+        return [h,m,dd,mm,yy]
     }
 }
 function convertTimeZone(){
