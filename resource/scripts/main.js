@@ -10,6 +10,7 @@ function $(x,parent){
 }
 
 function main(){
-    alert("HI")
+
 }
-main()
+//With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
+main();
