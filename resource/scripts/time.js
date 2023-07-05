@@ -1,3 +1,4 @@
+
 const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31]
 const leapmonthdays = [31,29,31,30,31,30,31,31,30,31,30,31]
 function isleapyear(year){
@@ -14,6 +15,7 @@ function isleapyear(year){
     }
     return false;
 }
+/*
 class Time{
     /**
      * All this will be 1 based Will always use 24 hours
@@ -26,7 +28,7 @@ class Time{
      * @param {Number} yy 
      * @param {Number} zh 
      * @param {Number} zm 
-     */
+     *
     constructor(h,m,s,dd,mm,yy,zh,zm){
         if(typeof h != "undefined"){
             this.hour = h;
@@ -79,30 +81,21 @@ class Time{
     }
     wrapTime(h,m,dd,mm,yy){
         var wraparound;
-        if(m<0||m>59){
-            wraparound = (m-Math.abs(m%59))/m
-            h += m<0?-wraparound:wraparound
-            m = Math.abs(59-m%59)
-        }
-        if(h<0||h>23){
-            wraparound = (h-Math.abs(h%23))/h
-            dd += h<0?-wraparound:wraparound
-            h = Math.abs(23-h%23)
-        }
-        var tempm = mm+0;
-        var nowmonthdays = isleapyear(yy)?leapmonthdays[tempm]:monthdays[tempm]
-        if(dd<=0||dd>nowmonthdays){
-            mm += d<=0?-1:1;
-            var nowmonthdays = isleapyear(yy)?leapmonthdays[tempm]:monthdays[tempm]
-            d = Math.abs(nowmonthdays-d%nowmonthdays)
-        }
-        if(mm<=0||mm>12){
-            yy += mm<=0?-1:1;
-            mm = mm%12;
-        }
+        
         return [h,m,dd,mm,yy]
     }
-}
-function convertTimeZone(){
-
+}*/
+/**
+ * Convert time zone
+ * @param {Date} date 
+ * @param {Number} h 
+ * @param {Number} m 
+ */
+function convertTimeZone(date,h,m){
+    var offsetminutes = date.getUTCMinutes()-m;
+    var offsethours = date.getUTCHours()-h;
+    var newdate = new Date(date);
+    newdate.setMinutes(offsetminutes<0?60+offsetminutes:offsetminutes);
+    newdate.setHours(offsethours<0?24+offsethours:offsethours);
+    return newdate;
 }
