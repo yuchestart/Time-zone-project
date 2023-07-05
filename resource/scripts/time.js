@@ -25,20 +25,17 @@ class Time extends Date{
         super(...theArgs)
         this.timeZoneOffset = this.getTimezoneOffset()
     }
-}
-
-/**
- * Convert time zone
- * @param {Time} date 
- * @param {Number} h 
- * @param {Number} m 
- */
-function convertTimeZone(date,h,m){
-    var offsetminutes = date.getUTCMinutes()-m;
-    var offsethours = date.getUTCHours()-h;
-    var newdate = new Time(date);
-    newdate.setMinutes(offsetminutes<0?60+offsetminutes:offsetminutes);
-    newdate.setHours(offsethours<0?24+offsethours:offsethours);
-    newdate.timeZoneOffset = -(h*60+m)
-    return newdate;
+    /**
+     * Convert time zone
+     * @param {Time} date 
+     * @param {Number} h 
+     * @param {Number} m 
+     */
+    convertTimeZone(date,h,m,implace){
+        var newdate = implace?this:new Time(date);
+        newdate.setHours(newdate.getUTCHours()+h);
+        newdate.setMinutes(newdate.getUTCMinutes()+m);
+        newdate.timeZoneOffset = -(h*60+m)
+        return newdate;
+    }
 }
