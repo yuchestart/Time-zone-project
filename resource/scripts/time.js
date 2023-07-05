@@ -33,9 +33,11 @@ class Time extends Date{
      */
     convertTimeZone(date,h,m,implace){
         var newdate = implace?this:new Time(date);
+        newdate.setHours(newdate.getUTCHours())
+        newdate.setMinutes(newdate.getUTCMinutes())
         newdate.setHours(newdate.getUTCHours()+h);
         newdate.setMinutes(newdate.getUTCMinutes()+m);
-        newdate.timeZoneOffset = -(h*60+m)
+        newdate.timeZoneOffset = -(h*60+m);
         return newdate;
     }
 }
