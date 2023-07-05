@@ -1,4 +1,4 @@
-
+Date.prototype.timeZoneOffset = Date.prototype.getTimezoneOffset()
 const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31]
 const leapmonthdays = [31,29,31,30,31,30,31,31,30,31,30,31]
 function isleapyear(year){
