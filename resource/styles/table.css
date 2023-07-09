@@ -35,8 +35,8 @@ th{
 .delete::before{
     content:"X";
 }
-.permanent > .delete{
-    
+.permanent>td>.delete{
+    display:none;
 }
 .delete{
     float:right;

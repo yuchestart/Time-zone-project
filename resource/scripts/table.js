@@ -1,6 +1,7 @@
 class TableElement{
+    static tableElementAttributes = {"location":0,"timenow":1,"timezone":2,"customtime":3}
     constructor(timedifference,name,islocaltime=false,permanent=false){
-        this.name = name;
+        this.location = name;
         if(islocaltime){
             mydate = new Date();
             this.utcdifference = (mydate.getHours()+timedifference) - mydate.getUTCHours();
@@ -18,8 +19,9 @@ class TableElement{
     getTime(time){
         return time.convertTimeZone(this.utcdifference);
     }
-    initialize(){
-
+    initializeHTML(){
+        let meElement = $("table-element",$("templates").id).class[0].cloneNode(true)
+        $("td",meElement).tag[TableElement.tableElementAttributes.location] = this.location;
     }
 }
 var table = []
