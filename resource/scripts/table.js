@@ -9,24 +9,17 @@ class TableElement{
             this.utcdifference = timedifference;
         }
         this.permanent = permanent;
+        this.html = null;
     }
     /**
      * 
-     * @param {Date} time 
+     * @param {Time} time 
      */
     getTime(time){
-        var newhours = time.getUTCHours()+this.utcdifference();
-        var mydate = new Date()
-        if(newhours > 23){
-            newhours-=23
-        }
-        mydate.setHours(newhours);
-        mydate.set
-        mydate.setMinutes(time.getUTCMinutes());
-        mydate.setSeconds(time.getSeconds());
-        return newhours
+        return time.convertTimeZone(this.utcdifference);
+    }
+    initialize(){
+
     }
 }
-var table = [
-
-]
+var table = []
