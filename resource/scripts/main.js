@@ -10,7 +10,8 @@ function $(x,parent){
 }
 
 function main(){
-
+    var mytableelement = new TableElement("Deez nuts",-480)
+    mytableelement.initializeHTML()
 }
 //With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
 main();

@@ -12,12 +12,13 @@
     }
     td{
         border:1px solid white !important;
-        color:white;
     }
     th{
         border-left:1px solid white !important;
         border-right:1px solid white !important;
         border-top:1px solid white !important;
+    }
+    .delete{
         color:white;
     }
 }
@@ -32,19 +33,20 @@ th{
     border-left:1px solid black;
     border-right:1px solid black;
 }
-.delete::before{
-    content:"X";
-}
 .permanent>td>.delete{
     display:none;
 }
 .delete{
     float:right;
-    background-color:rgba(0,0,0,0.3);
+    background-color:rgba(255, 0, 0, 0.3);
     border:transparent;
+    border-radius:3px;
 }
 .delete:active{
     float:right;
-    background-color:rgba(0,0,0,0.5);
+    background-color:rgba(255, 0, 0, 0.5);
     border:transparent;
+}
+.table-element-template{
+    display:none;
 }

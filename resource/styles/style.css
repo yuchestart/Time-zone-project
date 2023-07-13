@@ -4,9 +4,7 @@
 @media (prefers-color-scheme: dark){
     html{
         background-color:rgb(68, 68, 68);
+        color:white
     }
 
-}
-#templates{
-    display:none;
 }
