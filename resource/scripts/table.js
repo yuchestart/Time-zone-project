@@ -18,7 +18,7 @@ class TableElement{
      * @param {Time} time 
      */
     getTime(time){
-        return time.convertTimeZone(this.utcdifference);
+        return time.convertTimeZone(time,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60);
     }
     setCustomTime(){
 

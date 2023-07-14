@@ -40,4 +40,13 @@ class Time extends Date{
         newdate.timeZoneOffset = -(h*60+m);
         return newdate;
     }
+    setToUTC(date,implace){
+        var newdate = implace?this:new Time(date);
+        newdate.setHours(newdate.getUTCHours())
+        newdate.setMinutes(newdate.getUTCMinutes())
+        newdate.setHours(newdate.getUTCHours());
+        newdate.setMinutes(newdate.getUTCMinutes());
+        newdate.timeZoneOffset = 0;
+        return newdate;
+    }
 }
