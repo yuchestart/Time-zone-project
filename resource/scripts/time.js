@@ -49,4 +49,9 @@ class Time extends Date{
         newdate.timeZoneOffset = 0;
         return newdate;
     }
+    returnSimplifiedString(){
+        var timestr = `${config.uses12hourclock?this.getHours()%12:this.getHours()}:${this.getMinutes()}`
+        var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
+        return `${timestr} ${datestr}`
+    }
 }
