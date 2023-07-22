@@ -2,11 +2,10 @@ const config = {
     uses12hourclock:0,
     usesmonthdayyear:0
 }
-
+let customTime = new Time()
 function updateConfig(){
     window.localStorage
 }
-
 function $(x,parent){
     return parent?{
         class:parent.getElementsByClassName(x),
@@ -20,6 +19,7 @@ function $(x,parent){
 
 function main(){
     var mytableelement = new TableElement("Beijing",-480)
+    setTimeout(updateTable,5000)
 }
 //With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
 main();

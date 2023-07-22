@@ -8,7 +8,7 @@ class TableElement{
      */
     constructor(locationname,timedifference,permanent,localtime){
         this.location = locationname;
-        this.utcdifference = timedifference;
+        this.utcdifference = localtime?new Date().getTimezoneOffset():timedifference;
         this.permanent = permanent;
         /**
          * @type {Time}
@@ -16,7 +16,10 @@ class TableElement{
         this.timenow = this.getTime(new Time())
         this.customtime = this.timenow;
         this.html = null;
-        this.initializeHTML()
+        this.initializeHTML();
+        this.id = table.length;
+        table.push(this)
+        
     }
     /**
      * 
@@ -33,6 +36,10 @@ class TableElement{
         this.customtime=time;
         this.updateHTML()
     }
+    updateTime(){
+        this.timenow = new Time()
+        this.timenow = this.timenow.convertTimeZone(this.timenow,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60)
+    }
     initializeHTML(){
         let meElement = $("table-element-template").class[0].cloneNode(true)
         $("span",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
@@ -44,9 +51,11 @@ class TableElement{
             $("button",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].hidden = true;
         } else{
             $("button",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].onclick = function(){
-                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)
+                table.splice(table.indexOf(this),1)
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
             }
         }
+        this.html = meElement
         $("maintable").id.appendChild(meElement)
     }
     updateHTML(){
@@ -56,4 +65,14 @@ class TableElement{
         $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
     }
 }
+function updateTable(){
+    for(var i=0; i<table.length; i++){
+        table[i].updateTime();
+        table[i].setCustomTime(customTime);
+        table[i].updateHTML();
+    }
+}
+/**
+ * @type {TableElement}
+ */
 const table = []
