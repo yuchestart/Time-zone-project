@@ -11,8 +11,10 @@
         background-color:rgb(62, 62, 62);
     }
     .navbaritem{
-        background-image:url(../img/table-dark.svg) !important;
         background-color:rgb(88, 88, 88) !important;
+    }
+    .tablenav{
+        background-image:url(../img/table-dark.svg) !important;
     }
     .navbaritem:active{
         background-color:rgb(70, 70, 70) !important;

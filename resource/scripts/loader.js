@@ -1,7 +1,7 @@
 const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
 const scriptlist = ["CATS.js","table.js","time.js","main.js"]
-const stylelist = ["table.css","navbar.css","style.css"]
+const stylelist = ["popup.css","table.css","navbar.css","style.css"]
 function loadScripts(){
     for(var i=0; i<stylelist.length; i++){
         var styler = document.createElement("link");

@@ -34,6 +34,7 @@ class TableElement{
      */
     setCustomTime(time){
         this.customtime=time;
+        this.customtime = this.customtime.convertTimeZone(this.customtime,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60)
         this.updateHTML()
     }
     updateTime(){
@@ -44,7 +45,9 @@ class TableElement{
         let meElement = $("table-element-template").class[0].cloneNode(true)
         $("span",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
         $("td",meElement).tag[TableElement.tableElementAttributes.timenow].innerText = this.timenow.returnSimplifiedString();
-        $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = this.utcdifference;
+        var absdiff = Math.abs(this.utcdifference)
+        var utcmin = absdiff%60;
+        $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference<0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
         $("td",meElement).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
         meElement.className = this.permanent?"permanent":""
         if(this.permanent){
@@ -61,7 +64,9 @@ class TableElement{
     updateHTML(){
         $("span",$("td",this.html).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
         $("td",this.html).tag[TableElement.tableElementAttributes.timenow].innerText = this.timenow.returnSimplifiedString();
-        $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = this.utcdifference;
+        var absdiff = Math.abs(this.utcdifference)
+        var utcmin = absdiff%60;
+        $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference<0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
         $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
     }
 }

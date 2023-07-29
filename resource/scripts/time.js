@@ -50,7 +50,11 @@ class Time extends Date{
         return newdate;
     }
     returnSimplifiedString(){
-        var timestr = `${config.uses12hourclock?this.getHours()%12:this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`
+        var timestr = `${config.uses12hourclock?this.getHours()%12:this.getHours()}:${
+            this.getMinutes()<10?"0"+this.getMinutes().toString():this.getMinutes()
+        }:${
+            this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds()
+        }`
         var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
         return `${timestr} ${datestr}`
     }
