@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height='500'>
+    <defs>
+        <linearGradient id="trail">
+            <stop offset="10%" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+        </linearGradient>
+    </defs>
+    <circle cx='250' cy='250' r='200' fill='#0c8dd4' stroke='black' stroke-width='25'/>
+    <ellipse cx='250' cy='250' rx='150' ry='200' fill='none' stroke='black' stroke-width='10'/>
+    <ellipse cx='250' cy='250' rx='100' ry='200' fill='none' stroke='black' stroke-width='10'/>
+    <ellipse cx='250' cy='250' rx='50' ry='200' fill='none' stroke='black' stroke-width='10'/>
+    <line x1="250" x2='250' y1='50' y2='450' stroke='black' stroke-width='10'/>
+    <line y1="250" y2='250' x1='50' x2='450' stroke='black' stroke-width='10'/>
+    <line y1="200" y2='200' x1='50' x2='450' stroke='black' stroke-width='10'/>
+    <line y1="300" y2='300' x1='50' x2='450' stroke='black' stroke-width='10'/>
+    <line y1="150" y2='150' x1='75' x2='425' stroke='black' stroke-width='10'/>
+    <line y1="350" y2='350' x1='75' x2='425' stroke='black' stroke-width='10'/>
+    <line y1="100" y2='100' x1='125' x2='375' stroke='black' stroke-width='10'/>
+    <line y1="400" y2='400' x1='125' x2='375' stroke='black' stroke-width='10'/>
+    <path fill='url(#trail)' d='M125 400 L75 350 L350 150Z'/>
+    <path d='M350 150 L350 180 L400 110 L325 145 Z' fill='lightgray'/>
+    <rect x='300' y='300' width='150' height='180' fill='white' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='320' y2='320' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='340' y2='340' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='360' y2='360' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='380' y2='380' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='400' y2='400' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='420' y2='420' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='440' y2='440' stroke='black' stroke-width='5'/>
+    <line x1='310' x2='440' y1='460' y2='460' stroke='black' stroke-width='5'/>
+</svg>

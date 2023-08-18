@@ -7,7 +7,8 @@
     <title>Time zone project</title>
 </head>
 <body>
-    <div id="ui"></div>
+    <div id="ui">
+        <div class="section" id="sectiontable">
         <table id="maintable">
             <tr class="table-element-template">
                 <td>
@@ -16,24 +17,29 @@
                         <img src="./resource/img/cross-light.svg">
                     </button>
                 </td>
-                <td>ERROR</td>
-                <td>ERROR</td>
+                <td>BUGGED</td>
+                <td>BUGGED</td>
                 <td>BUGGED</td>
             </tr>
             <tr><th>Location Name</th><th>Time now</th><th>UTC Difference</th><th id="setcustomtime">Custom Time</th></tr>
             <tfoot>
-            <tr id="add"><td>&plus; Add more</td></tr>
+            <tr id="addtotable"><td>&plus; Add more</td></tr>
             </tfoot>
         </table>
+        </div>
+        <div class="section" id="sectionplanner" hidden>
+        </div>
     </div>
-    <div class="popup-container" hidden>
+    <div class="popup-container">
         <div class="popup">
+            <h1></h1>
+            <h1></h1>
             <button class="close"></button>
         </div>
     </div>
     <div id="navbar">
-        <div class="navbaritem"></div>
-        <div class="navbaritem"></div>
+        <div class="navbaritem tablenav"></div>
+        <div class="navbaritem plannernav"></div>
     </div>
     
 </body>
