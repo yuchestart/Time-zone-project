@@ -14,6 +14,5 @@ function loadScripts(){
         scripter.src = scripturl + scriptlist[i];
         document.getElementsByTagName("head")[0].appendChild(scripter)
     }
-    
 }
 window.onload = loadScripts;

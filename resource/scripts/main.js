@@ -25,4 +25,4 @@ function main(){
     setInterval(updateTable,100)
 }
 //With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
-main();
+setTimeout(main,50)
