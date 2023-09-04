@@ -1,12 +1,3 @@
-async function retrieveData(name){
-    const response = fetch(name).then(data=>data.json())
-    return response
-}
-var countries,cities,timezones,ctx;
-//retrieveData("world_cities.json").then((data)=>{cities = data})
-//retrieveData("world_countries.json").then((data)=>{countries = data})
-//retrieveData("world_timezone.json").then((data)=>{timezone = data})
-ctx = document.getElementById("rendercanvas").getContext("2d")
 function convertToXY(long,lat,ctx,zoom,offset){
     
     var percentagex = Math.abs((long)*zoom)/180
@@ -82,8 +73,15 @@ function renderShape(ctx,shape,overlay=0,zoom=1,moved=[0,0],fill="rgba(0,0,0,0)"
     }
 }
 
-function run(){
-    renderShape(ctx,countries,0,3,[-200,200],"green","black","blue")
-    renderShape(ctx,timezones,1,3,[-200,200],"rgba(0,0,0,0)","white")
-    renderShape(ctx,cities,1,3,[-200,200],"red","white","none",3)
+function timezoneOfPoint(lat,long){
+    function orientation(p,q,r){
+        let val = (q[1]-p[1])*(r[0]-q[0])-(q[0]-p[0])*(r[1]-q[1])
+        return (val>0)?1:(val<0)?2:0;
+    }
+    var times = timezones.features;
+    for(var i=0; i<times.length; i++){
+        if(times[i].geometry.type == "MultiPolygon"){
+
+        }
+    }
 }

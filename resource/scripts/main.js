@@ -22,7 +22,10 @@ function main(){
     $("setcustomtime").id.onclick = function(){
         
     }
+    $("addtotable").id.onclick = function(){
+        
+    }
     setInterval(updateTable,100)
 }
 //With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
-setTimeout(main,50)
+setTimeout(main,100)

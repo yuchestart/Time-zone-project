@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="./resource/scripts/loader.js"></script>
+
     <title>Time zone project</title>
 </head>
 <body>
     <div id="ui">
-        <div class="section" id="sectiontable">
+        <div class="section" id="sectiontable" hidden>
         <table id="maintable">
             <tr class="table-element-template">
                 <td>
@@ -29,8 +30,18 @@
         </div>
         <div class="section" id="sectionplanner" hidden>
         </div>
+        <div class="section" id="sectionworldclock">
+            <canvas id="worldmap"></canvas>
+        </div>
     </div>
-    <div class="popup-container">
+    <div class="menus">
+        <div class="menuflyout">
+            <div class="menu-addtableelement">
+
+            </div>
+        </div>
+    </div>
+    <div class="popup-container" hidden>
         <div class="popup">
             <h1 class="popup-title">Lorem Ipsum</h1>
             <span class="popup-content">Lorem ipsum dolor sit amet, dolorem the quick brown fox jumps over the lazy dog.</span>

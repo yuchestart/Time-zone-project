@@ -20,6 +20,9 @@
     .navbaritem:active{
         background-color:rgb(70, 70, 70) !important;
     }
+    .plannernav{
+        background-image:url(../img/planner-dark.svg);
+    }
 }
 .navbaritem{
     margin: 10px;
@@ -33,7 +36,7 @@
     background-image:url(../img/table-light.svg);
 }
 .plannernav{
-    background-image:url(../img/planner.svg);
+    background-image:url(../img/planner-light.svg);
 }
 .navbaritem:active{
     background-color:rgb(171, 171, 171);
