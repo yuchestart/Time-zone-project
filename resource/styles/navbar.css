@@ -17,11 +17,14 @@
     .tablenav{
         background-image:url(../img/table-dark.svg) !important;
     }
-    .navbaritem:active{
+    #navbaritem:active{
         background-color:rgb(70, 70, 70) !important;
     }
-    .plannernav{
+    #plannernav{
         background-image:url(../img/planner-dark.svg);
+    }
+    #worldclocknav{
+        background-image:url(../img/world-clock-dark.svg);
     }
 }
 .navbaritem{
@@ -32,11 +35,14 @@
     background-size:cover;
     border-radius:3px;
 }
-.tablenav{
+#tablenav{
     background-image:url(../img/table-light.svg);
 }
-.plannernav{
+#plannernav{
     background-image:url(../img/planner-light.svg);
+}
+#worldclocknav{
+    background-image:url(../img/world-clock-light.svg);
 }
 .navbaritem:active{
     background-color:rgb(171, 171, 171);

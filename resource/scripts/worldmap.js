@@ -1,4 +1,7 @@
 let ctx;
 function worldMap(){
-    ctx=
+    ctx=$("worldmap",$("sectionworldclock").id).id.getContext("2d");
+}
+function drawWorldMap(){
+    
 }
