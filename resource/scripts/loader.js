@@ -1,7 +1,20 @@
 const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
-const scriptlist = ["renderer/renderer","renderer/world_timezone","renderer/world_countries","renderer/world_cities","table","time","main"]
-const stylelist = ["splash.css","popup.css","worldmap.css","table.css","navbar.css","style.css"]
+const scriptlist = [
+    "vars",
+    "renderer/renderer",
+    "renderer/world_timezone",
+    "renderer/world_countries",
+    "renderer/world_cities",
+    "menus",
+    "cityselectmenu.js",
+    "table",
+    "time",
+    "main",
+];
+const stylelist = ["splash.css","menu.css","popup.css","worldmap.css","table.css","navbar.css","style.css"]
+let loadedScripts = 0;
+let loadedScriptsinterval = null;
 function loadScripts(){
     for(var i=0; i<stylelist.length; i++){
         var styler = document.createElement("link");
@@ -15,5 +28,11 @@ function loadScripts(){
         //scripter.defer = true
         document.getElementsByTagName("head")[0].appendChild(scripter)
     }
+    loadedScriptsinterval = setInterval(function(){
+        if(loadedScripts == scriptlist.length){
+            clearInterval(loadedScriptsinterval);
+            main()
+        }
+    },100)
 }
 window.onload = loadScripts;

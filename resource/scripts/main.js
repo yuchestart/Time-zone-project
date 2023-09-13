@@ -25,20 +25,31 @@ function navigate(x){
         }
     }
 }
+function openMenu(type){
+    
+    const uis = $("div",$("menuflyout",$("menus").id).class[0]).class;
+    for(var i=0; i<uis.length; i++){
+        uis[i].hidden = true;
+        if(uis.className.replace("menu-","") == type){
+            uis[i].hidden = false;
+        }
+    }
+}
+function closeMenu(){
+    $("menus").id.hidden = true;
+}
 function main(){
     $("splash").id.hidden = true; // Will replace with animation later
     new TableElement("Local Time",0,true,true)
     $("setcustomtime").id.onclick = function(){
         
     }
-    $("addtotable").id.onclick = function(){
-        
-    }
+    $("addtotable").id.onclick = addTableElement;
     const navbarelements = $("navbaritem",$("navbar").id).class
     for(var i=0; i<navbarelements.length; i++){
         navbarelements[i].onclick = function(){navigate(this.id.replace("nav",""))};
     }
+    navigate("table")
     setInterval(updateTable,100)
 }
-//With the loading script, main has to be run immediately after being loaded, because the window.onload event already occured
-setTimeout(main,100)
+loadedScripts+=1;

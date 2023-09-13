@@ -6,9 +6,10 @@ class TableElement{
      * @param {Number} timedifference In minutes, and for some reason order is reversed. 480 would mean UTC-8
      * @param {Boolean} localtime Is local time
      */
-    constructor(locationname,timedifference,permanent,localtime){
+    constructor(locationname,timedifference,permanent,localtime=false){
         this.location = locationname;
-        this.utcdifference = localtime?new Date().getTimezoneOffset():timedifference;
+        this.utcdifference = localtime?new Date().getTimezoneOffset():-timedifference;
+        this.isLocaltime = localtime;
         this.permanent = permanent;
         /**
          * @type {Time}
@@ -26,7 +27,7 @@ class TableElement{
      * @param {Time} time 
      */
     getTime(time){
-        return time.convertTimeZone(time,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60);
+        return this.isLocaltime?new Time():time.convertTimeZone(time,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60);
     }
     /**
      * 
@@ -38,8 +39,7 @@ class TableElement{
         this.updateHTML()
     }
     updateTime(){
-        this.timenow = new Time()
-        this.timenow = this.timenow.convertTimeZone(this.timenow,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60)
+        this.timenow = this.getTime(new Time())
     }
     initializeHTML(){
         let meElement = $("table-element-template").class[0].cloneNode(true)
@@ -77,7 +77,11 @@ function updateTable(){
         table[i].updateHTML();
     }
 }
+function addTableElement(){
+    
+}
 /**
  * @type {TableElement}
  */
 const table = []
+loadedScripts+=1;

@@ -85,3 +85,5 @@ function timezoneOfPoint(lat,long){
         }
     }
 }
+
+loadedScripts+=1;

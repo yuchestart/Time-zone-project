@@ -33,10 +33,8 @@ class Time extends Date{
      */
     convertTimeZone(date,h,m,implace){
         var newdate = implace?this:new Time(date);
-        newdate.setHours(newdate.getUTCHours())
-        newdate.setMinutes(newdate.getUTCMinutes())
-        newdate.setHours(newdate.getUTCHours()+h);
-        newdate.setMinutes(newdate.getUTCMinutes()+m);
+        newdate.setHours(newdate.getUTCHours()+h)
+        newdate.setMinutes(newdate.getUTCMinutes()+m)
         newdate.timeZoneOffset = -(h*60+m);
         return newdate;
     }
@@ -44,8 +42,6 @@ class Time extends Date{
         var newdate = implace?this:new Time(date);
         newdate.setHours(newdate.getUTCHours())
         newdate.setMinutes(newdate.getUTCMinutes())
-        newdate.setHours(newdate.getUTCHours());
-        newdate.setMinutes(newdate.getUTCMinutes());
         newdate.timeZoneOffset = 0;
         return newdate;
     }
@@ -59,3 +55,4 @@ class Time extends Date{
         return `${timestr} ${datestr}`
     }
 }
+loadedScripts+=1;

@@ -1,0 +1,31 @@
+.menuflyout{
+    position:absolute;
+    top:20px;
+    left:20px;
+    width:calc(100vw - 80px);
+    height:calc(100vh - 155px);
+    border-radius:15px;
+    -webkit-backdrop-filter:blur(13px);
+    backdrop-filter:blur(13px);
+    background-color:rgba(0,0,0,0.2);
+    padding:20px 20px 20px 20px;
+    overflow-y:scroll;
+}
+.menu-add-table-element-map{
+    width:100%;
+    background-color:red;
+    
+    margin-bottom:10px;
+}
+.add-table-element-hours:invalid > .add-table-element-invalid-minute{
+    display:block !important;
+}
+.add-table-element-hours:valid + .add-table-element-invalid-hour{
+    display:none !important;
+}
+.add-table-element-minutes:invalid + .add-table-element-invalid-minute{
+    display:block !important;
+}
+.add-table-element-minutes:valid + .add-table-element-invalid-minute{
+    display:none !important;
+}

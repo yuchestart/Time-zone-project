@@ -8,8 +8,8 @@
     <title>Time zone project</title>
 </head>
 <body>
-    <div id="ui">
-        <div class="section" id="sectiontable">
+    <div id="ui" class="fullscreen-interface-element">
+        <div class="section" id="sectiontable" hidden>
         <table id="maintable">
             <tr class="table-element-template">
                 <td>
@@ -36,14 +36,52 @@
             <canvas id="worldmap"></canvas>
         </div>
     </div>
-    <div class="menus">
+    <div id="menus" class="fullscreen-interface-element">
         <div class="menuflyout">
-            <div class="menu-addtableelement">
-
+            <div class="menu-ui menu-addtableelement">
+                <h1>Add new table element</h1>
+                <span>Pick your: </span><select value="City">
+                    <option>City</option>
+                    <option>Time zone</option>
+                    <option>Map location</option>
+                </select>
+                <div class="menu-add-table-element-tab menu-add-table-element-city-tab">
+                <span>Search for cities:</span><br>
+                <input type="text" placeholder="Search for cities">
+                </div>
+                <div class="menu-add-table-element-tab  menu-add-table-element-timezone-tab" hidden>
+                <span>Time zone:</span>&nbsp;UTC&nbsp;<select>
+                    <option>+</option>
+                    <option>-</option>
+                </select>
+                <input class="add-table-element-hours add-table-element-time" min="0" max="12" type="number"></input>
+                &colon;
+                <input class="add-table-element-minutes add-table-element-time" min="0" max="59" type="number"><br>
+                <span class="invalid-input add-table-element-invalid-hour"><br>
+                    Hours must in range of
+                    <span class="add-table-element-hourmin">0</span>
+                    to
+                    <span class="add-table-element-hourmax">12</span><br>
+                </span>
+                <span class="invalid-input add-table-element-invalid-minute">
+                    Minutes must be in range of 0 to 59
+                </span>
+                </div>
+                <div class="menu-add-table-element-tab  menu-add-table-element-map-tab" hidden>
+                <h3>Or pick a location on the map:</h3>
+                <canvas class="menu-add-table-element-map"></canvas>
+                </div>
             </div>
+            <div class="menu-buttonwrapper">
+                <div class="menu-buttongroup menu-buttonoptions-okcancel">
+                    <button>OK</button>
+                    <button>Cancel</button>
+                </div>
+            </div>
+            <div class="menu-closebutton"></div>
         </div>
     </div>
-    <div class="popup-container" hidden>
+    <div id="popup-container" hidden class="fullscreen-interface-element">
         <div class="popup">
             <h1 class="popup-title">Lorem Ipsum</h1>
             <span class="popup-content">Lorem ipsum dolor sit amet, dolorem the quick brown fox jumps over the lazy dog.</span>
@@ -62,7 +100,7 @@
         <div class="navbaritem" id="plannernav"></div>
         <div class="navbaritem" id="worldclocknav"></div>
     </div>
-    <div id="splash">
+    <div id="splash" class="fullscreen-interface-element">
         <span class="splashtext">Codename Jet Lag</span>
     </div>
 </body>

@@ -5,3 +5,4 @@ function worldMap(){
 function drawWorldMap(){
     
 }
+loadedScripts+=1;
