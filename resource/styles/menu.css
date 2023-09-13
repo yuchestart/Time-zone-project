@@ -11,21 +11,28 @@
     padding:20px 20px 20px 20px;
     overflow-y:scroll;
 }
+.menuflyout::-webkit-scrollbar{
+    display:none;
+}
+
 .menu-add-table-element-map{
     width:100%;
     background-color:red;
-    
     margin-bottom:10px;
 }
-.add-table-element-hours:invalid > .add-table-element-invalid-minute{
-    display:block !important;
+.menu-add-table-element-hours:invalid{
+    color:red;
 }
-.add-table-element-hours:valid + .add-table-element-invalid-hour{
-    display:none !important;
+.menu-add-table-element-hours:valid{
+    color:default;
 }
-.add-table-element-minutes:invalid + .add-table-element-invalid-minute{
-    display:block !important;
+.menu-add-table-element-minutes:invalid{
+    color:red;
 }
-.add-table-element-minutes:valid + .add-table-element-invalid-minute{
-    display:none !important;
+.menu-add-table-element-minutes:valid{
+    color:default;
+}
+.menu-buttonwrapper{
+    position:absolute;
+    bottom:20px;
 }

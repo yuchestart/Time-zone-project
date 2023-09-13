@@ -13,14 +13,14 @@
         <table id="maintable">
             <tr class="table-element-template">
                 <td>
-                    <span>BUGGED</span>
+                    <span>Lorem Ipsum</span>
                     <button class="delete">
                         X
                     </button>
                 </td>
-                <td>BUGGED</td>
-                <td>BUGGED</td>
-                <td>BUGGED</td>
+                <td>Lorem Ipsum</td>
+                <td>Lorem Ipsum</td>
+                <td>Lorem Ipsum</td>
             </tr>
             <tr><th>Location Name</th><th>Time now</th><th>UTC Difference</th><th id="setcustomtime">Custom Time</th></tr>
             <tfoot>
@@ -40,42 +40,33 @@
         <div class="menuflyout">
             <div class="menu-ui menu-addtableelement">
                 <h1>Add new table element</h1>
-                <span>Pick your: </span><select value="City">
+                <h2>Pick your: <select value="City" class="menu-add-table-element-type-selector">
                     <option>City</option>
                     <option>Time zone</option>
                     <option>Map location</option>
-                </select>
+                </select></h2>
                 <div class="menu-add-table-element-tab menu-add-table-element-city-tab">
                 <span>Search for cities:</span><br>
                 <input type="text" placeholder="Search for cities">
                 </div>
                 <div class="menu-add-table-element-tab  menu-add-table-element-timezone-tab" hidden>
-                <span>Time zone:</span>&nbsp;UTC&nbsp;<select>
+                UTC&nbsp;<select class="menu-add-table-element-utc-selector" value="+">
                     <option>+</option>
                     <option>-</option>
                 </select>
-                <input class="add-table-element-hours add-table-element-time" min="0" max="12" type="number"></input>
+                <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" type="number"></input>
                 &colon;
-                <input class="add-table-element-minutes add-table-element-time" min="0" max="59" type="number"><br>
-                <span class="invalid-input add-table-element-invalid-hour"><br>
-                    Hours must in range of
-                    <span class="add-table-element-hourmin">0</span>
-                    to
-                    <span class="add-table-element-hourmax">12</span><br>
-                </span>
-                <span class="invalid-input add-table-element-invalid-minute">
-                    Minutes must be in range of 0 to 59
-                </span>
+                <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" type="number"><br>
                 </div>
-                <div class="menu-add-table-element-tab  menu-add-table-element-map-tab" hidden>
+                <div class="menu-add-table-element-tab  menu-add-table-element-maplocation-tab" hidden>
                 <h3>Or pick a location on the map:</h3>
                 <canvas class="menu-add-table-element-map"></canvas>
                 </div>
             </div>
             <div class="menu-buttonwrapper">
                 <div class="menu-buttongroup menu-buttonoptions-okcancel">
-                    <button>OK</button>
-                    <button>Cancel</button>
+                    <button class="menu-button menu-button-ok">OK</button>
+                    <button class="menu-button menu-button-cancel">Cancel</button>
                 </div>
             </div>
             <div class="menu-closebutton"></div>
@@ -85,14 +76,7 @@
         <div class="popup">
             <h1 class="popup-title">Lorem Ipsum</h1>
             <span class="popup-content">Lorem ipsum dolor sit amet, dolorem the quick brown fox jumps over the lazy dog.</span>
-            <div class="popup-ui">
-                <span>Select your time bro</span>
-                <input type="time">
-            </div><br>
-            <div class="popup-action-container">
-                <button class="popup-close-accept">OK</button>
-                <button class="popup-close-reject">Cancel</button>
-            </div>
+            
         </div>
     </div>
     <div id="navbar">

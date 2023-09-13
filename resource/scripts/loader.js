@@ -7,7 +7,7 @@ const scriptlist = [
     "renderer/world_countries",
     "renderer/world_cities",
     "menus",
-    "cityselectmenu.js",
+    "newtableelementmenu",
     "table",
     "time",
     "main",
