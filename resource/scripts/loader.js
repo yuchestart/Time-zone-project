@@ -6,19 +6,28 @@ const scriptlist = [
     "renderer/world_timezone",
     "renderer/world_countries",
     "renderer/world_cities",
+    "citysearch",
     "menus",
     "newtableelementmenu",
     "table",
     "time",
     "main",
 ];
-const stylelist = ["splash.css","menu.css","popup.css","worldmap.css","table.css","navbar.css","style.css"]
+const stylelist = [
+    "splash.css",
+    "menu.css",
+    "popup.css",
+    "worldmap.css",
+    "table.css",
+    "navbar.css",
+    "style.css"
+]
 let loadedScripts = 0;
-let loadedScriptsinterval = null;
+let loadedScriptsInterval = null;
 function loadScripts(){
     for(var i=0; i<stylelist.length; i++){
         var styler = document.createElement("link");
-        styler.rel = "stylesheet"
+        styler.rel = "stylesheet";
         styler.href = styleurl+stylelist[i];
         document.getElementsByTagName("head")[0].appendChild(styler)
     }
@@ -28,9 +37,9 @@ function loadScripts(){
         //scripter.defer = true
         document.getElementsByTagName("head")[0].appendChild(scripter)
     }
-    loadedScriptsinterval = setInterval(function(){
+    loadedScriptsInterval = setInterval(function(){
         if(loadedScripts == scriptlist.length){
-            clearInterval(loadedScriptsinterval);
+            clearInterval(loadedScriptsInterval);
             main()
         }
     },100)

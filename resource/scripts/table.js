@@ -78,7 +78,7 @@ function updateTable(){
     }
 }
 function addTableElement(){
-    
+    openMenus(Enum.ADD_TABLE_ELEMENT);
 }
 /**
  * @type {TableElement}

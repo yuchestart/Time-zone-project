@@ -14,12 +14,16 @@
 .menuflyout::-webkit-scrollbar{
     display:none;
 }
-
+.menu-search-bar{
+    width:100%;
+}
 .menu-add-table-element-map{
     width:100%;
     background-color:red;
     margin-bottom:10px;
 }
+
+
 .menu-add-table-element-hours:invalid{
     color:red;
 }
@@ -33,6 +37,14 @@
     color:default;
 }
 .menu-buttonwrapper{
-    position:absolute;
+    position:fixed;
     bottom:20px;
+}
+.menu-add-table-element-city-tab-search-results{
+    max-height:200px;
+    margin-bottom:5px;
+    overflow-y:scroll;
+}
+.menu-add-table-element-city-tab-search-results::-webkit-scrollbar{
+    display:none;
 }

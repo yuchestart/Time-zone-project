@@ -17,19 +17,7 @@ function navigate(x){
         }
     }
 }
-function openMenu(type){
-    
-    const uis = $("div",$("menuflyout",$("menus").id).class[0]).class;
-    for(var i=0; i<uis.length; i++){
-        uis[i].hidden = true;
-        if(uis.className.replace("menu-","") == type){
-            uis[i].hidden = false;
-        }
-    }
-}
-function closeMenu(){
-    $("menus").id.hidden = true;
-}
+
 function main(){
     //Run UIInit scripts
     for(var i=0; i<uiInitScripts.length; i++){

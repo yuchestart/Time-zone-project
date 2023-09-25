@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="./resource/scripts/loader.js"></script>
-
-    <title>Time zone project</title>
+    <title>World O' clock WebView Interface</title>
 </head>
 <body>
     <div id="ui" class="fullscreen-interface-element">
@@ -36,7 +35,7 @@
             <canvas id="worldmap"></canvas>
         </div>
     </div>
-    <div id="menus" class="fullscreen-interface-element">
+    <div id="menus" class="fullscreen-interface-element" hidden>
         <div class="menuflyout">
             <div class="menu-ui menu-addtableelement">
                 <h1>Add new table element</h1>
@@ -46,21 +45,26 @@
                     <option>Map location</option>
                 </select></h2>
                 <div class="menu-add-table-element-tab menu-add-table-element-city-tab">
-                <span>Search for cities:</span><br>
-                <input type="text" placeholder="Search for cities">
+                    <span>Your city: <span class="menu-add-table-element-city-tab-view-city">Select a city</span></span><br>
+                    <span>Filters:</span>
+                    <select class="menu-add-table-element-city-tab-select-country">
+                        <option class="template-option">Filter Country</option>
+                    </select>
+                    <input type="text" placeholder="Search for cities" class="menu-add-table-element-city-tab-search menu-search-bar">
+                    <ul class="menu-add-table-element-city-tab-search-results search-result-list"></ul>
                 </div>
                 <div class="menu-add-table-element-tab  menu-add-table-element-timezone-tab" hidden>
-                UTC&nbsp;<select class="menu-add-table-element-utc-selector" value="+">
-                    <option>+</option>
-                    <option>-</option>
-                </select>
-                <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" type="number"></input>
-                &colon;
-                <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" type="number"><br>
+                    UTC&nbsp;<select class="menu-add-table-element-utc-selector" value="+">
+                        <option>+</option>
+                        <option>-</option>
+                    </select>
+                    <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" step="1" type="number"></input>
+                    &colon;
+                    <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" step="1" type="number"><br>
                 </div>
                 <div class="menu-add-table-element-tab  menu-add-table-element-maplocation-tab" hidden>
-                <h3>Or pick a location on the map:</h3>
-                <canvas class="menu-add-table-element-map"></canvas>
+                    <h3>Or pick a location on the map:</h3>
+                    <canvas class="menu-add-table-element-map"></canvas>
                 </div>
             </div>
             <div class="menu-buttonwrapper">
@@ -69,7 +73,6 @@
                     <button class="menu-button menu-button-cancel">Cancel</button>
                 </div>
             </div>
-            <div class="menu-closebutton"></div>
         </div>
     </div>
     <div id="popup-container" hidden class="fullscreen-interface-element">
@@ -85,7 +88,7 @@
         <div class="navbaritem" id="worldclocknav"></div>
     </div>
     <div id="splash" class="fullscreen-interface-element">
-        <span class="splashtext">Codename Jet Lag</span>
+        <span class="splashtext">World O' Clock</span>
     </div>
 </body>
 </html>
