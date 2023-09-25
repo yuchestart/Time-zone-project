@@ -23,6 +23,10 @@ uiInitScripts.push(function(){
         for(var i=0; i<searchResults.length; i++){
             var searchItem = document.createElement("li");
             searchItem.setAttribute("class","search-result")
+            searchItem.onclick = function(){
+                MENU_RETURN_DATA.city = this.innerText.split(", ");
+                $("menu-add-table-element-city-tab-view-city").class[0].innerText = this.innerText;
+            }
             var properties = searchResults[i].properties;
             searchItem.innerText = `${properties.CITY_NAME}${properties.ADMIN_NAME==properties.CITY_NAME?"":", "+properties.ADMIN_NAME}, ${properties.CNTRY_NAME}`;
             resultsElement.appendChild(searchItem)

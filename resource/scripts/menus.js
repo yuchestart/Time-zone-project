@@ -25,7 +25,7 @@ function menubuttonresponse(e){
             if(CURRENT_MENU_TYPE==Enum.ADD_TABLE_ELEMENT){
                 switch(MENU_RETURN_DATA.tableElementType){
                     case "city":
-
+                        
                         break;
                     case "timezone":
                         if($("menu-add-table-element-utc-selector").class[0].checkValidity())
