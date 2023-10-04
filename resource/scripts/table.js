@@ -3,12 +3,12 @@ class TableElement{
     /**
      * 
      * @param {String} locationname Name of the location
-     * @param {Number} timedifference In minutes, and for some reason order is reversed. 480 would mean UTC-8
+     * @param {Number} timedifference In minutes, and for some reason order is reversed. -480 would mean UTC-8
      * @param {Boolean} localtime Is local time
      */
     constructor(locationname,timedifference,permanent,localtime=false){
         this.location = locationname;
-        this.utcdifference = localtime?new Date().getTimezoneOffset():-timedifference;
+        this.utcdifference = localtime?-new Date().getTimezoneOffset():timedifference;
         this.isLocaltime = localtime;
         this.permanent = permanent;
         /**
@@ -47,7 +47,7 @@ class TableElement{
         $("td",meElement).tag[TableElement.tableElementAttributes.timenow].innerText = this.timenow.returnSimplifiedString();
         var absdiff = Math.abs(this.utcdifference)
         var utcmin = absdiff%60;
-        $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference<0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
+        $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
         $("td",meElement).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
         meElement.className = this.permanent?"permanent":""
         if(this.permanent){
@@ -66,7 +66,7 @@ class TableElement{
         $("td",this.html).tag[TableElement.tableElementAttributes.timenow].innerText = this.timenow.returnSimplifiedString();
         var absdiff = Math.abs(this.utcdifference)
         var utcmin = absdiff%60;
-        $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference<0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
+        $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
         $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
     }
 }

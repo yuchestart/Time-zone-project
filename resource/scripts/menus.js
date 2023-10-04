@@ -25,7 +25,14 @@ function menubuttonresponse(e){
             if(CURRENT_MENU_TYPE==Enum.ADD_TABLE_ELEMENT){
                 switch(MENU_RETURN_DATA.tableElementType){
                     case "city":
-                        
+                        var citytext = "";
+                        for(var i=0; i<MENU_RETURN_DATA.city.length; i++){
+                            citytext+=MENU_RETURN_DATA.city[i];
+                            if(i<MENU_RETURN_DATA.city.length-1){
+                                citytext+=","
+                            }
+                        }
+                        new TableElement(`${citytext}`,MENU_RETURN_DATA.timezone*60)
                         break;
                     case "timezone":
                         if($("menu-add-table-element-utc-selector").class[0].checkValidity())

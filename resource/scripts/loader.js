@@ -6,7 +6,7 @@ const scriptlist = [
     "renderer/world_timezone",
     "renderer/world_countries",
     "renderer/world_cities",
-    "renderer/pointinpolygon.js",
+    "renderer/pointinpolygon",
     "citysearch",
     "menus",
     "newtableelementmenu",

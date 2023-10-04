@@ -21,7 +21,7 @@
                 <td>Lorem Ipsum</td>
                 <td>Lorem Ipsum</td>
             </tr>
-            <tr><th>Location Name</th><th>Time now</th><th>UTC Difference</th><th id="setcustomtime">Custom Time</th></tr>
+            <tr><th>Location Name</th><th>Local time now</th><th>UTC Difference</th><th id="setcustomtime">Custom Time</th></tr>
             <tfoot>
             <tr id="addtotable"><td>&plus; Add more</td></tr>
             </tfoot>
@@ -49,6 +49,9 @@
                     <span>Filters:</span>
                     <select class="menu-add-table-element-city-tab-select-country">
                         <option class="template-option">Filter Country</option>
+                    </select>
+                    <select class="menu-add-table-element-city-tab-select-province" hidden>
+                        <option class="template-option">Filter Administrative Region</option>
                     </select>
                     <input type="text" placeholder="Search for cities" class="menu-add-table-element-city-tab-search menu-search-bar">
                     <ul class="menu-add-table-element-city-tab-search-results search-result-list"></ul>

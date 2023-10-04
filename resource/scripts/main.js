@@ -25,6 +25,7 @@ function main(){
     }
     $("splash").id.hidden = true; // Will replace with animation later
     new TableElement("Local Time",0,true,true)
+    new TableElement("Coordinated Universal Time",0,true,false)
     $("setcustomtime").id.onclick = function(){
         
     }
