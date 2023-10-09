@@ -1,6 +1,11 @@
 const Enum = {
-    ADD_TABLE_ELEMENT:0
+    ADD_TABLE_ELEMENT:0,
+    RENAME_TABLE_ELEMENT:1,
+    SET_CUSTOM_TIME:2,
 }
+const uiInitScripts = [];
+const onNavigate = {};
+let currentScreen = "table";
 function $(x,parent){
     return parent?{
         class:parent.getElementsByClassName(x),
@@ -11,5 +16,4 @@ function $(x,parent){
         id:document.getElementById(x)
     }
 }
-const uiInitScripts = [];
 loadedScripts+=1

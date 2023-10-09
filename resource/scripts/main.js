@@ -9,12 +9,16 @@ function updateConfig(){
 }
 
 function navigate(x){
+    currentScreen = x;
     const sections = $("section",$("ui").id).class
     for(var i=0; i<sections.length; i++){
         sections[i].hidden = true
         if(sections[i].id.replace("section","") == x){
             sections[i].hidden = false
         }
+    }
+    if(onNavigate[x]){
+        onNavigate[x]();
     }
 }
 
@@ -26,9 +30,6 @@ function main(){
     $("splash").id.hidden = true; // Will replace with animation later
     new TableElement("Local Time",0,true,true)
     new TableElement("Coordinated Universal Time",0,true,false)
-    $("setcustomtime").id.onclick = function(){
-        
-    }
     $("addtotable").id.onclick = addTableElement;
     const navbarelements = $("navbaritem",$("navbar").id).class
     for(var i=0; i<navbarelements.length; i++){

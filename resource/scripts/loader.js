@@ -10,6 +10,7 @@ const scriptlist = [
     "citysearch",
     "menus",
     "newtableelementmenu",
+    "worldclock",
     "table",
     "time",
     "main",

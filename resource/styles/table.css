@@ -1,9 +1,10 @@
 #maintable{
     width:100%;
     height:max-content;
-    background-color:rgb(233, 233, 233);
-    border-radius:5px;
+    /*background-color:rgb(233, 233, 233);*/
+    /*border-radius:5px;*/
     border:1px solid gray;
+    margin:5px 5px 5px 5px;
 }
 @media (prefers-color-scheme: dark){
     #maintable{
@@ -27,20 +28,28 @@
 }
 td{
     border:1px solid black;
-    padding:5px 0px 5px 0px;
+    padding:5px 0px 5px 5px;
 }
 th{
     border-left:1px solid black;
     border-right:1px solid black;
+    text-align:center;
 }
 .permanent>td>.delete{
     display:none;
 }
-.delete{
+.table-element-button-group{
     float:right;
-    background-color:rgba(255, 0, 0, 0.3);
+}
+.table-element-button-group>button{
     border:transparent;
     border-radius:3px;
+}
+.delete{
+    background-color:rgba(255, 0, 0, 0.3);
+}
+.rename{
+    background-color:rgba(73, 73, 73, 0.3);
 }
 .delete>img{
     

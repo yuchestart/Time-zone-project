@@ -4,12 +4,16 @@
 .popup{
     width:75%;
     height:75%;
-    background-color:white;
+    background-color:rgba(255,255,255,0.5);
+    box-shadow:5px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius:10px;
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+    padding-left:10px;
+    -webkit-backdrop-filter:blur(13px);
+    backdrop-filter:blur(13px);
 }
 .close{
     padding:7px 7px 7px 7px;

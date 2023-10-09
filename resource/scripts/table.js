@@ -6,8 +6,9 @@ class TableElement{
      * @param {Number} timedifference In minutes, and for some reason order is reversed. -480 would mean UTC-8
      * @param {Boolean} localtime Is local time
      */
-    constructor(locationname,timedifference,permanent,localtime=false){
+    constructor(locationname,timedifference,permanent,localtime=false,latlong){
         this.location = locationname;
+        this.latlong = latlong?latlong:[null,null]
         this.utcdifference = localtime?-new Date().getTimezoneOffset():timedifference;
         this.isLocaltime = localtime;
         this.permanent = permanent;
@@ -49,13 +50,18 @@ class TableElement{
         var utcmin = absdiff%60;
         $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
         $("td",meElement).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
-        meElement.className = this.permanent?"permanent":""
+        meElement.className = this.permanent?"permanent table-element":"table-element"
         if(this.permanent){
-            $("button",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].hidden = true;
+            $("delete",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
+            $("rename",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
         } else{
-            $("button",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].onclick = function(){
-                table.splice(table.indexOf(this),1)
-                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+            $("delete",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
+                var index = table.indexOf(this)
+                table.splice(index,1)
+                $("table-element").class[index].parentNode.removeChild($("table-element").class[index])
+            }
+            $("rename",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
+                openMenus(Enum.RENAME_TABLE_ELEMENT);
             }
         }
         this.html = meElement
@@ -83,5 +89,10 @@ function addTableElement(){
 /**
  * @type {TableElement}
  */
-const table = []
+const table = [];
+uiInitScripts.push(function(){
+    $("setcustomtime").id.onclick = function(){
+        openMenus(Enum.SET_CUSTOM_TIME)
+    }
+})
 loadedScripts+=1;

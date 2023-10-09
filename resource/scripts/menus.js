@@ -3,8 +3,9 @@ let MENU_RETURN_DATA = {};
 function openMenus(type){
     var uioptions = $("menu-ui",$("menus").id).class;
     for(var i=0; i<uioptions.length; i++){
-        uioptions.hidden = true;
+        uioptions[i].hidden = true;
     }
+    console.log(uioptions)
     MENU_RETURN_DATA = {}
     switch(type){
         case Enum.ADD_TABLE_ELEMENT:
@@ -12,6 +13,12 @@ function openMenus(type){
             MENU_RETURN_DATA.tableElementType = "city"
             CURRENT_MENU_TYPE = Enum.ADD_TABLE_ELEMENT;
             break;
+        case Enum.RENAME_TABLE_ELEMENT:
+            $("menu-renametableelement",$("menus").id).class[0].hidden = false;
+            MENU_RETURN_DATA.returnname = ""
+            CURRENT_MENU_TYPE = Enum.RENAME_TABLE_ELEMENT;
+            break
+        case Enum.
         default:
             console.warn("Invalid menu type")
     }
@@ -21,15 +28,17 @@ function menubuttonresponse(e){
     var classnames = e.target.className.split(" ");
     switch(classnames[1]){
         case "menu-button-ok":
-
             if(CURRENT_MENU_TYPE==Enum.ADD_TABLE_ELEMENT){
                 switch(MENU_RETURN_DATA.tableElementType){
                     case "city":
+                        if(!MENU_RETURN_DATA.city){
+
+                        }
                         var citytext = "";
                         for(var i=0; i<MENU_RETURN_DATA.city.length; i++){
                             citytext+=MENU_RETURN_DATA.city[i];
                             if(i<MENU_RETURN_DATA.city.length-1){
-                                citytext+=","
+                                citytext+=", "
                             }
                         }
                         new TableElement(`${citytext}`,MENU_RETURN_DATA.timezone*60)
@@ -45,6 +54,8 @@ function menubuttonresponse(e){
                     case "map":
                         break;
                 }
+            } else if (CURRENT_MENU_TYPE == Enum.RENAME_TABLE_ELEMENT){
+
             }
             break;
     }

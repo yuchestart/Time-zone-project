@@ -1,25 +1,30 @@
 function convertToXY(long,lat,ctx,zoom,offset){
-    
     var percentagex = Math.abs((long)*zoom)/180
     var percentagey = Math.abs((lat)*zoom)/90
     var width = ctx.canvas.width/2
     var height = ctx.canvas.height/2
+    var pixelperdegreex = (width*percentagex)
+    var pixelperdegreey = (height*percentagey)
     if(long < 0){
-        x = width-(width*percentagex)
+        x = width-pixelperdegreex
     } else {
-        x = width+(width*percentagex)
+        x = width+pixelperdegreex
     }
     x-=offset[0]*zoom
     if(lat < 0){
-        y = height+(height*percentagey)
+        y = height+pixelperdegreey
     } else {
-        y = height-(height*percentagey)
+        y = height-pixelperdegreey
     }
     y+=offset[1]*zoom
     return [x,y];
 }
-
-function renderShape(ctx,shape,overlay=0,zoom=1,moved=[0,0],fill="rgba(0,0,0,0)",stroke='black',bg="rgba(0,0,0,0)",size=1){
+function recalibrate(){
+    ctx.canvas.width = ctx.canvas.clientWidth;
+    ctx.canvas.height = ctx.canvas.clientHeight;
+    return [ctx.canvas.clientWidth,ctx.canvas.clientHeight]
+}
+function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0,0)",stroke='black',bg="rgba(0,0,0,0)",size=1){
     if(!overlay){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
         ctx.fillStyle = bg;
