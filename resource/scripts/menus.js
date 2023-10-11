@@ -11,17 +11,20 @@ function openMenus(type){
         case Enum.ADD_TABLE_ELEMENT:
             $("menu-addtableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.tableElementType = "city"
-            CURRENT_MENU_TYPE = Enum.ADD_TABLE_ELEMENT;
             break;
         case Enum.RENAME_TABLE_ELEMENT:
             $("menu-renametableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.returnname = ""
-            CURRENT_MENU_TYPE = Enum.RENAME_TABLE_ELEMENT;
-            break
-        case Enum.
+            break;
+        case Enum.SET_CUSTOM_TIME:
+            $("menu-setcustomtime",$("menus").id).class[0].hidden = false;
+            MENU_RETURN_DATA.customtime = [null,null];
+            break;
         default:
-            console.warn("Invalid menu type")
+            console.warn("Invalid menu type");
+            break;
     }
+    CURRENT_MENU_TYPE=type;
     $("menus").id.hidden = false
 }
 function menubuttonresponse(e){
@@ -41,7 +44,7 @@ function menubuttonresponse(e){
                                 citytext+=", "
                             }
                         }
-                        new TableElement(`${citytext}`,MENU_RETURN_DATA.timezone*60)
+                        new TableElement(`${citytext}`,MENU_RETURN_DATA.timezone*60,false,false,MENU_RETURN_DATA.latlong)
                         break;
                     case "timezone":
                         if($("menu-add-table-element-utc-selector").class[0].checkValidity())

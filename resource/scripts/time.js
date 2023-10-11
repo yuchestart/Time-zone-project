@@ -45,14 +45,14 @@ class Time extends Date{
         newdate.timeZoneOffset = 0;
         return newdate;
     }
-    returnSimplifiedString(){
+    returnSimplifiedString(returnDate = true){
         var timestr = `${config.uses12hourclock?this.getHours()%12:this.getHours()}:${
             this.getMinutes()<10?"0"+this.getMinutes().toString():this.getMinutes()
         }:${
             this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds()
-        }`
+        }${config.uses12hourclock?this.getHours()>12?" PM":" AM":""}`
         var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
-        return `${timestr} ${datestr}`
+        return `${timestr}${returnDate?" "+datestr:""}`
     }
 }
 loadedScripts+=1;

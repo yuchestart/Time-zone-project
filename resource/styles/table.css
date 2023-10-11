@@ -1,5 +1,5 @@
 #maintable{
-    width:100%;
+    width:calc(100vw - 10px);
     height:max-content;
     /*background-color:rgb(233, 233, 233);*/
     /*border-radius:5px;*/

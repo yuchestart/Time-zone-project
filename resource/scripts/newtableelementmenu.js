@@ -31,6 +31,7 @@ uiInitScripts.push(function(){
             searchItem.onclick = function(){
                 MENU_RETURN_DATA.city = this.innerText.split(", ");
                 MENU_RETURN_DATA.timezone = thisresult.properties.ZONE_
+                MENU_RETURN_DATA.latlong = thisresult.geometry.coordinates
                 $("menu-add-table-element-city-tab-view-city").class[0].innerText = this.innerText;
             }
             var properties = searchResults[i].properties;

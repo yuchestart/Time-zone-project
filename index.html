@@ -67,7 +67,7 @@
                         <option>-</option>
                     </select>
                     <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" step="1" type="number"></input>
-                    &colon;
+                    <span>&colon;</span>
                     <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" step="1" type="number"><br>
                 </div>
                 <div class="menu-add-table-element-tab  menu-add-table-element-maplocation-tab" hidden>
@@ -78,6 +78,13 @@
             <div class="menu-ui menu-renametableelement">
                 <h1>Rename table element</h1>
                 <input placeholder="New name for table element" class="menu-search-bar">
+            </div>
+            <div class="menu-ui menu-setcustomtime">
+                <h1>Set custom time</h1>
+                <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" step="1" type="number"></input>
+                <span>&colon;</span>
+                <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" step="1" type="number"><br>
+                <select ></select>
             </div>
             <div></div>
             <div class="menu-buttonwrapper">
@@ -100,7 +107,6 @@
     </div>
     <div id="navbar">
         <div class="navbaritem" id="tablenav"></div>
-        <div class="navbaritem" id="plannernav"></div>
         <div class="navbaritem" id="worldclocknav"></div>
     </div>
     <div id="splash" class="fullscreen-interface-element">

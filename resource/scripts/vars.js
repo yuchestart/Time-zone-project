@@ -3,6 +3,7 @@ const Enum = {
     RENAME_TABLE_ELEMENT:1,
     SET_CUSTOM_TIME:2,
 }
+
 const uiInitScripts = [];
 const onNavigate = {};
 let currentScreen = "table";

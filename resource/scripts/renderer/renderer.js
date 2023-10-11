@@ -1,21 +1,22 @@
 function convertToXY(long,lat,ctx,zoom,offset){
-    var percentagex = Math.abs((long)*zoom)/180
-    var percentagey = Math.abs((lat)*zoom)/90
-    var width = ctx.canvas.width/2
-    var height = ctx.canvas.height/2
-    var pixelperdegreex = (width*percentagex)
-    var pixelperdegreey = (height*percentagey)
+    var percentagex = Math.abs(long)/180
+    var percentagey = Math.abs(lat)/90
+    var width = ctx.canvas.width/2;
+    var height = ctx.canvas.height/2;
+    var pixelperdegreex = (200*percentagex)*zoom
+    var pixelperdegreey = (100*percentagey)*zoom
     if(long < 0){
         x = width-pixelperdegreex
     } else {
         x = width+pixelperdegreex
     }
-    x-=offset[0]*zoom
-    if(lat < 0){
-        y = height+pixelperdegreey
-    } else {
+    x+=offset[0]*zoom
+    if(lat > 0){
         y = height-pixelperdegreey
+    } else {
+        y = height+pixelperdegreey
     }
+
     y+=offset[1]*zoom
     return [x,y];
 }
