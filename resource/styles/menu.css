@@ -19,7 +19,9 @@
     width:100%;
 }
 .menu-add-table-element-map{
-    width:100%;
+    width:90%;
+    margin:auto;
+    /*height:50%;*/
     background-color:red;
     margin-bottom:10px;
 }

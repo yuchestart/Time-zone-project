@@ -28,3 +28,9 @@
 .invalid-input{
     color:red;
 }
+.data-holder{
+    display:none;
+}
+html,body{
+    touch-action:none;
+}

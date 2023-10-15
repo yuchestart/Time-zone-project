@@ -26,16 +26,21 @@ uiInitScripts.push(function(){
         resultsElement.innerHTML = "";
         for(var i=0; i<searchResults.length; i++){
             var searchItem = document.createElement("li");
+            var searchIndex = document.createElement("span");
+            searchIndex.innerText = searchResults[i].properties.FID;
+            searchIndex.className = "data-holder";
             searchItem.setAttribute("class","search-result");
-            var thisresult = searchResults[i];
             searchItem.onclick = function(){
+                var index = parseInt($("data-holder",this).class[0].innerText);
+                console.log(index)
                 MENU_RETURN_DATA.city = this.innerText.split(", ");
-                MENU_RETURN_DATA.timezone = thisresult.properties.ZONE_
-                MENU_RETURN_DATA.latlong = thisresult.geometry.coordinates
+                MENU_RETURN_DATA.timezone = cities.features[index].properties.ZONE_
+                MENU_RETURN_DATA.latlong = cities.features[index].geometry.coordinates
                 $("menu-add-table-element-city-tab-view-city").class[0].innerText = this.innerText;
             }
             var properties = searchResults[i].properties;
             searchItem.innerText = `${properties.CITY_NAME}${properties.ADMIN_NAME==properties.CITY_NAME?"":", "+properties.ADMIN_NAME}, ${properties.CNTRY_NAME}`;
+            searchItem.appendChild(searchIndex)
             resultsElement.appendChild(searchItem)
         }
     }
@@ -83,5 +88,6 @@ uiInitScripts.push(function(){
         option.innerText = countrynamelist[i];
         countryselect.appendChild(option);
     }
+    
 })
 loadedScripts+=1

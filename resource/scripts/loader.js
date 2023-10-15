@@ -1,7 +1,6 @@
 const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
 const scriptlist = [
-    "vars",
     "renderer/renderer",
     "renderer/world_timezone",
     "renderer/world_countries",

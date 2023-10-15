@@ -17,4 +17,15 @@ function $(x,parent){
         id:document.getElementById(x)
     }
 }
-loadedScripts+=1
+
+function clamp(x,a,b){
+    var max = Math.max(a,b);
+    var min = Math.min(a,b);
+    if(x>max){
+        return max
+    }
+    if(x<min){
+        return min
+    }
+    return x
+}

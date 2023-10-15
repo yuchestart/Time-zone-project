@@ -9,6 +9,8 @@ function openMenus(type){
     MENU_RETURN_DATA = {}
     switch(type){
         case Enum.ADD_TABLE_ELEMENT:
+            $("menu-add-table-element-type-selector").class[0].value = "City";
+            $("menu-add-table-element-type-selector").class[0].onchange()
             $("menu-addtableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.tableElementType = "city"
             break;
@@ -51,7 +53,7 @@ function menubuttonresponse(e){
                         var minusplus = $("menu-add-table-element-utc-selector").class[0].value;
                         var hour = $("menu-add-table-element-hours").class[0].value;
                         var minutes = $("menu-add-table-element-minutes").class[0].value;
-                        new TableElement(`UTC${minusplus}${hour-10<0?"0"+hour.toString():hour}${(minutes-minutes%10)==0?"0"+minutes.toString():minutes}`,
+                        new TableElement(`UTC${minusplus}${hour-10<0?"0"+hour.toString():hour}:${(minutes-minutes%10)==0?"0"+minutes.toString():minutes}`,
                         -(hour*60+minutes))
                         break;
                     case "map":
