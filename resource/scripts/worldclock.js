@@ -22,7 +22,7 @@ function drawWorldMap(){
     renderShape(ctx,countries,1,initialZoom+zoom,[offset[0]+400,offset[1]],"#e8f8e9","black")
     for(var i=0; i<table.length; i++){
         if(table[i].latlong[0] !== null){
-            var point = convertToXY(table[i].latlong[0],table[i].latlong[1],ctx,initialZoom,[globalOffset[0],globalOffset[1]]);
+            var point = convertToXY(table[i].latlong[0],table[i].latlong[1],ctx,initialZoom+zoom,offset);
             ctx.font = "15px sans-serif"
             var text = `${table[i].location} ${table[i].timenow.returnSimplifiedString(false)}`
             var textlength = ctx.measureText(text).width/2
