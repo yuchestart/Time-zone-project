@@ -1,7 +1,48 @@
 
 
+
+#sectionworldclock{
+    touch-action:auto;
+}
 #worldmap{
     background-color:#a4cfff;
     width:100vw;
     height:calc(100vh - 65px);
+}
+.worldmapbuttongroup{
+    position:absolute;
+    right:5px;
+    bottom:70px;
+}
+
+.worldmapbutton-zoomin{
+    background-image:url(../img/zoom-in-light.svg);
+}
+.worldmapbutton-zoomout{
+    background-image:url(../img/zoom-out-light.svg);
+}
+.worldmapbutton-zoomhome{
+    background-image:url(../img/zoom-home-light.svg);
+}
+
+.worldmapbutton{
+    background-size:contain;
+    background-color:transparent;
+    width:3em;
+    height:3em;
+    border:none;
+    display:block;
+    margin:5px 0px;
+}
+/*Dark theme things*/
+@media (prefers-color-scheme: dark){
+    .worldmapbutton-zoomin{
+        background-image:url(../img/zoom-in-dark.svg);
+    }
+    .worldmapbutton-zoomout{
+        background-image:url(../img/zoom-out-dark.svg);
+    }
+    .worldmapbutton-zoomhome{
+        background-image:url(../img/zoom-home-dark.svg);
+    }
 }

@@ -1,22 +1,28 @@
 let CURRENT_MENU_TYPE = null;
 let MENU_RETURN_DATA = {};
-function openMenus(type){
+function openMenus(type,info){
     var uioptions = $("menu-ui",$("menus").id).class;
     for(var i=0; i<uioptions.length; i++){
         uioptions[i].hidden = true;
     }
-    console.log(uioptions)
-    MENU_RETURN_DATA = {}
+    
+    MENU_RETURN_DATA = {
+        info:info
+    }
     switch(type){
         case Enum.ADD_TABLE_ELEMENT:
             $("menu-add-table-element-type-selector").class[0].value = "City";
             $("menu-add-table-element-type-selector").class[0].onchange()
+            $("menu-add-table-element-city-tab-select-country").class[0].value = "Filter Country"
+            $("menu-add-table-element-city-tab-select-country").class[0].onchange()
+            $("menu-add-table-element-city-tab-search-results").class[0].innerHTML = "";
             $("menu-addtableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.tableElementType = "city"
             break;
         case Enum.RENAME_TABLE_ELEMENT:
             $("menu-renametableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.returnname = ""
+            
             break;
         case Enum.SET_CUSTOM_TIME:
             $("menu-setcustomtime",$("menus").id).class[0].hidden = false;
@@ -37,7 +43,8 @@ function menubuttonresponse(e){
                 switch(MENU_RETURN_DATA.tableElementType){
                     case "city":
                         if(!MENU_RETURN_DATA.city){
-
+                            openPopup("Please select a city.");
+                            return;
                         }
                         var citytext = "";
                         for(var i=0; i<MENU_RETURN_DATA.city.length; i++){
@@ -49,18 +56,30 @@ function menubuttonresponse(e){
                         new TableElement(`${citytext}`,MENU_RETURN_DATA.timezone*60,false,false,MENU_RETURN_DATA.latlong)
                         break;
                     case "timezone":
-                        if($("menu-add-table-element-utc-selector").class[0].checkValidity())
+                        if($("menu-add-table-element-time").class[0].checkValidity()){
                         var minusplus = $("menu-add-table-element-utc-selector").class[0].value;
                         var hour = $("menu-add-table-element-hours").class[0].value;
                         var minutes = $("menu-add-table-element-minutes").class[0].value;
+                        hour = hour.length?hour:"0";
+                        minutes = minutes.length?minutes:"0";
                         new TableElement(`UTC${minusplus}${hour-10<0?"0"+hour.toString():hour}:${(minutes-minutes%10)==0?"0"+minutes.toString():minutes}`,
-                        -(hour*60+minutes))
+                        (parseInt(hour)*60+parseInt(minutes)))
+                        } else {
+                            openPopup("Please select a valid time zone.");
+                            return;
+                        }
                         break;
                     case "map":
                         break;
                 }
             } else if (CURRENT_MENU_TYPE == Enum.RENAME_TABLE_ELEMENT){
-
+                var val = $("menu-rename-table-element-input").class[0].value
+                if(val){
+                    table[MENU_RETURN_DATA.info.idx].rename(val);
+                } else {
+                    openPopup("Choose a name or press cancel if you don't want to rename.");
+                    return;
+                }
             }
             break;
     }

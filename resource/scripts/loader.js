@@ -1,5 +1,6 @@
 const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
+const uiInitScripts = [];
 const scriptlist = [
     "renderer/renderer",
     "renderer/world_timezone",
@@ -8,6 +9,7 @@ const scriptlist = [
     "renderer/pointinpolygon",
     "citysearch",
     "menus",
+    "popup",
     "newtableelementmenu",
     "worldclock",
     "table",
@@ -43,6 +45,6 @@ function loadScripts(){
             clearInterval(loadedScriptsInterval);
             main()
         }
-    },100)
+    },1000)
 }
 window.onload = loadScripts;

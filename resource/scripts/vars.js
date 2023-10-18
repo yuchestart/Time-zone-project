@@ -4,7 +4,7 @@ const Enum = {
     SET_CUSTOM_TIME:2,
 }
 
-const uiInitScripts = [];
+
 const onNavigate = {};
 let currentScreen = "table";
 function $(x,parent){

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <circle cx="260" cy="260" r="240" fill="rgba(56,56,56,0.582)"/>
+    <circle cx="250" cy="250" r="240" fill="#ffffff"/>
+    <path d="
+    M100,240
+    L100,260
+    L240,260
+    L240,400
+    L260,400
+    L260,260
+    L400,260
+    L400,240
+    L260,240
+    L260,100
+    L240,100
+    L240,240
+    Z" fill="black"/>
+</svg>

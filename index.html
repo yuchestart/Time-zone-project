@@ -34,24 +34,27 @@
             </tfoot>
         </table>
         </div>
-        <div class="section" id="sectionplanner" hidden>
-            <h1>Planner will come soon :&rpar;</h1>
-        </div>
+
         <div class="section" id="sectionworldclock" hidden>
             <canvas id="worldmap"></canvas>
+            <div class="worldmapbuttongroup">
+                <button class="worldmapbutton worldmapbutton-zoomin"></button>
+                <button class="worldmapbutton worldmapbutton-zoomout"></button>
+                <button class="worldmapbutton worldmapbutton-zoomhome"></button>
+            </div>
         </div>
     </div>
     <div id="menus" class="fullscreen-interface-element" hidden>
         <div class="menuflyout">
             <div class="menu-ui menu-addtableelement" hidden>
-                <h1>Add new table element</h1>
-                <h2>Pick your: <select value="City" class="menu-add-table-element-type-selector">
+                <h2>Add new table element</h2>
+                <h3>Pick your: <select value="City" class="menu-add-table-element-type-selector">
                     <option>City</option>
                     <option>Time zone</option>
                     <option>Map location</option>
-                </select></h2>
+                </select></h3>
                 <div class="menu-add-table-element-tab menu-add-table-element-city-tab">
-                    <span>Your city: <span class="menu-add-table-element-city-tab-view-city">Select a city</span></span><br>
+                    <span>Selected: <span class="menu-add-table-element-city-tab-view-city">Select a city</span></span><br>
                     <span>Filters:</span>
                     <select class="menu-add-table-element-city-tab-select-country">
                         <option class="template-option">Filter Country</option>
@@ -76,8 +79,8 @@
                 </div>
             </div>
             <div class="menu-ui menu-renametableelement">
-                <h1>Rename table element</h1>
-                <input placeholder="New name for table element" class="menu-search-bar">
+                <h2>Rename table element</h2>
+                <input placeholder="New name for table element" class="menu-search-bar menu-rename-table-element-input">
             </div>
             <div class="menu-ui menu-setcustomtime">
                 <h1>Set custom time</h1>
@@ -95,13 +98,12 @@
             </div>
         </div>
     </div>
-    <div id="popup-container" hidden class="fullscreen-interface-element">
+    <div id="popup-container" class="fullscreen-interface-element">
         <div class="popup">
             <h1 class="popup-title">Lorem Ipsum</h1>
-            <span class="popup-content">Lorem ipsum dolor sit amet, dolorem the quick brown fox jumps over the lazy dog.</span>
-            <div class="menu-buttongroup menu-buttonoptions-okcancel">
-                <button class="menu-button menu-button-ok">OK</button>
-                <button class="menu-button menu-button-cancel">Cancel</button>
+            <p class="popup-content">Lorem ipsum dolor sit amet, dolorem the quick brown fox jumps over the lazy dog.</p>
+            <div class="menu-buttonwrapper">
+                <button class="close-popup">OK</button>
             </div>
         </div>
     </div>

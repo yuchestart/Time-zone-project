@@ -41,7 +41,10 @@
 }
 .menu-buttonwrapper{
     position:fixed;
-    bottom:20px;
+    bottom:10px;
+}
+.menu-buttongroup>button{
+    padding:5px 7px 5px 7px;
 }
 .menu-add-table-element-city-tab-search-results{
     max-height:200px;

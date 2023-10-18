@@ -6,4 +6,11 @@ function openPopup(contents,title){
         $("popup-title").class[0].hidden = true;
     }
     $("popup-content").class[0].innerText = contents;
+    $("popup-container").id.hidden = false;
 }
+uiInitScripts.push(function(){
+    $("close-popup").class[0].onclick = function(){
+        $("popup-container").id.hidden = true;
+    }
+});
+loadedScripts+=1;

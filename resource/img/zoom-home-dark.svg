@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <circle cx="260" cy="260" r="240" fill="rgba(56,56,56,0.582)"/>
+    <circle cx="250" cy="250" r="240" fill="#383838"/>
+    <path d="
+    M100,100
+    L200,100
+    M100,100
+    L100,150
+    M400,100
+    L300,100
+    M400,100
+    L400,150
+    M100,400
+    L200,400
+    M100,400
+    L100,350
+    M400,400
+    L300,400
+    M400,400
+    L400,350"
+    stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="250" cy="250" r="30" fill="#ffffff"/>
+</svg>

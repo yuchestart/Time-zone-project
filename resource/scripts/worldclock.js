@@ -2,7 +2,7 @@
 const EPSILON = 300;
 let start = {};
 let ctx,canvas,globalOffset,initialZoom,zoom = 0,prevZoom = 0,tempGlobalOffset;
-
+let numberOfevents = 0;
 function drawWorldMap(){
     if(currentScreen!="worldclock"){
         return
@@ -12,14 +12,14 @@ function drawWorldMap(){
     var canvasSize = recalibrate()
     //console.log(canvasSize)
     globalOffset[0] = globalOffset[0]%400
-    globalOffset[1] = clamp(globalOffset[1],-100,100)
     tempGlobalOffset[0] = tempGlobalOffset[0]%400
-    tempGlobalOffset[1] = clamp(tempGlobalOffset[1],-100,100)
     initialZoom = canvasSize[0]/400
+    var totalZoom = initialZoom+zoom
     var offset = [globalOffset[0]+tempGlobalOffset[0],globalOffset[1]+tempGlobalOffset[1]]
-    renderShape(ctx,countries,1,initialZoom+zoom,offset,"#e8f8e9","black");
-    renderShape(ctx,countries,1,initialZoom+zoom,[offset[0]-400,offset[1]],"#e8f8e9","black")
-    renderShape(ctx,countries,1,initialZoom+zoom,[offset[0]+400,offset[1]],"#e8f8e9","black")
+    offset[1] = clamp(offset[1],100,-100)
+    renderShape(ctx,countries,1,totalZoom,offset,"#e8f8e9","black");
+    renderShape(ctx,countries,1,totalZoom,[offset[0]-400,offset[1]],"#e8f8e9","black")
+    renderShape(ctx,countries,1,totalZoom,[offset[0]+400,offset[1]],"#e8f8e9","black")
     for(var i=0; i<table.length; i++){
         if(table[i].latlong[0] !== null){
             var point = convertToXY(table[i].latlong[0],table[i].latlong[1],ctx,initialZoom+zoom,offset);
@@ -64,6 +64,7 @@ function pdownhandler(event){
         start.x = event.touches[0].pageX
         start.y = event.touches[0].pageY
     }
+    numberOfevents++;
 }
 function pmovehandler(event){
     if(event.touches.length === 2){
@@ -88,18 +89,37 @@ function pmovehandler(event){
     //console.log(tempGlobalOffset)
 }
 function puphandler(event){
-
     prevZoom = zoom;
     globalOffset = [globalOffset[0]+tempGlobalOffset[0],globalOffset[1]+tempGlobalOffset[1]];
     tempGlobalOffset = [0,0]
-
+    if(event.touches.length === 1){
+        start.x=event.touches[0].pageX
+        start.y=event.touches[0].pageY
+    }
+    numberOfevents--;
 }
 function setupGestures(){
     canvas.ontouchstart = pdownhandler;
     canvas.ontouchmove = pmovehandler;
     canvas.ontouchend = puphandler;
 }
+function adjustZoom(x,e,zoomin = true){
+    if(numberOfevents == 0){
+        zoom += x;
+        zoom = clamp(zoom,10,0);
+    }
+}
 uiInitScripts.push(function(){
+    $("worldmapbutton-zoomin").class[0].onclick = function(e){
+        adjustZoom(1,e);
+        
+    }
+    $("worldmapbutton-zoomout").class[0].onclick = function(e){
+        adjustZoom(-1,e,0);
+    }
+    $("worldmapbutton-zoomhome").class[0].onclick = function(){
+        zoom = 0
+    }
     globalOffset = [0,0]
     tempGlobalOffset = [0,0]
     canvas = $("worldmap").id

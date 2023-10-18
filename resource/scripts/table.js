@@ -42,6 +42,9 @@ class TableElement{
     updateTime(){
         this.timenow = this.getTime(new Time())
     }
+    rename(x){
+        this.location = x;
+    }
     initializeHTML(){
         let meElement = $("table-element-template").class[0].cloneNode(true)
         $("span",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
@@ -61,7 +64,9 @@ class TableElement{
                 $("table-element").class[index].parentNode.removeChild($("table-element").class[index])
             }
             $("rename",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
-                openMenus(Enum.RENAME_TABLE_ELEMENT);
+                openMenus(Enum.RENAME_TABLE_ELEMENT,{
+                    idx:table.indexOf(this)
+                });
             }
         }
         this.html = meElement
