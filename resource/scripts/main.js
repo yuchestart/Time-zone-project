@@ -1,6 +1,6 @@
 const config = {
     uses12hourclock:0,
-    usesmonthdayyear:0
+    usesmonthdayyear:0,
 }
 
 let customTime = new Time()

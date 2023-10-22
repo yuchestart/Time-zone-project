@@ -16,6 +16,7 @@ function openMenus(type,info){
             $("menu-add-table-element-city-tab-select-country").class[0].value = "Filter Country"
             $("menu-add-table-element-city-tab-select-country").class[0].onchange()
             $("menu-add-table-element-city-tab-search-results").class[0].innerHTML = "";
+            $("menu-add-table-element-city-tab-view-city").class[0].innerText = "Select a city";
             $("menu-addtableelement",$("menus").id).class[0].hidden = false;
             MENU_RETURN_DATA.tableElementType = "city"
             break;
@@ -63,7 +64,7 @@ function menubuttonresponse(e){
                         hour = hour.length?hour:"0";
                         minutes = minutes.length?minutes:"0";
                         new TableElement(`UTC${minusplus}${hour-10<0?"0"+hour.toString():hour}:${(minutes-minutes%10)==0?"0"+minutes.toString():minutes}`,
-                        (parseInt(hour)*60+parseInt(minutes)))
+                        (minusplus=="-"?-1:1)*(parseInt(hour)*60+parseInt(minutes)))
                         } else {
                             openPopup("Please select a valid time zone.");
                             return;

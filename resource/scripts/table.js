@@ -47,12 +47,7 @@ class TableElement{
     }
     initializeHTML(){
         let meElement = $("table-element-template").class[0].cloneNode(true)
-        $("span",$("td",meElement).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
-        $("td",meElement).tag[TableElement.tableElementAttributes.timenow].innerText = this.timenow.returnSimplifiedString();
-        var absdiff = Math.abs(this.utcdifference)
-        var utcmin = absdiff%60;
-        $("td",meElement).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
-        $("td",meElement).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
+        this.updateHTML()
         meElement.className = this.permanent?"permanent table-element":"table-element"
         if(this.permanent){
             $("delete",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
@@ -78,7 +73,7 @@ class TableElement{
         var absdiff = Math.abs(this.utcdifference)
         var utcmin = absdiff%60;
         $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
-        $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString();
+        $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString(true,false);
     }
 }
 function updateTable(){
@@ -91,13 +86,49 @@ function updateTable(){
 function addTableElement(){
     openMenus(Enum.ADD_TABLE_ELEMENT);
 }
+function openCompare(){
+    $("table-compare-tab-date-select").class[0].value = customTime.returnISODate();
+    if(config.uses12hourclock){
+        $("table-compare-tab-hour-select").class[0].max="12";
+        var hours = customTime.getHours()%12;
+        if(hours==0){
+            hours = 12;
+        }
+        $("table-compare-tab-hour-select").class[0].value = hours;
+        $("table-compare-tab-half-select").class[0].value = customTime.getHours()>=12?"PM":"AM";
+        $("table-compare-tab-half-select").class[0].hidden = false;
+        
+    } else {
+        $("table-compare-tab-hour-select").class[0].max="24";
+        $("table-compare-tab-hour-select").class[0].value = customTime.getHours()
+        $("table-compare-tab-half-select").class[0].hidden = true;
+    }
+    $("table-compare-tab-minute-select").class[0].value = customTime.getMinutes()
+}
+function updateCustomTime(){
+    var hours = $("table-compare-tab-hour-select").class[0].value;
+    var minutes = $("table-compare-tab-minute-select").class[0].value;
+    var date = $("table-compare-tab-date-select").class[0].value;
+    var ampm = $("table-compare-tab-half-select").class[0].value;
+}
 /**
  * @type {TableElement}
  */
 const table = [];
 uiInitScripts.push(function(){
     $("setcustomtime").id.onclick = function(){
-        openMenus(Enum.SET_CUSTOM_TIME)
+        var settings = $("table-compare-tab").class;
+        if(settings[0].hidden){
+            openCompare();
+        }
+        for(var i=0; i<settings.length; i++){
+            settings[i].hidden = !settings[i].hidden
+        }
+        
+    }
+    var inputs = $("table-compare-tab-input").class;
+    for(var i=0; i<inputs.length; i++){
+        inputs[i].onchange = updateCustomTime;
     }
 })
 loadedScripts+=1;

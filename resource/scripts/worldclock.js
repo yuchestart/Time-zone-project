@@ -24,7 +24,7 @@ function drawWorldMap(){
         if(table[i].latlong[0] !== null){
             var point = convertToXY(table[i].latlong[0],table[i].latlong[1],ctx,initialZoom+zoom,offset);
             ctx.font = "15px sans-serif"
-            var text = `${table[i].location} ${table[i].timenow.returnSimplifiedString(false)}`
+            var text = `${table[i].timenow.returnSimplifiedString()}`
             var textlength = ctx.measureText(text).width/2
             //console.log(point,textlength)
             ctx.beginPath()
@@ -118,7 +118,8 @@ uiInitScripts.push(function(){
         adjustZoom(-1,e,0);
     }
     $("worldmapbutton-zoomhome").class[0].onclick = function(){
-        zoom = 0
+        zoom = 0;
+        globalOffset = [0,0];
     }
     globalOffset = [0,0]
     tempGlobalOffset = [0,0]

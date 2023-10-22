@@ -26,19 +26,6 @@
     margin-bottom:10px;
 }
 
-
-.menu-add-table-element-hours:invalid{
-    color:red;
-}
-.menu-add-table-element-hours:valid{
-    color:default;
-}
-.menu-add-table-element-minutes:invalid{
-    color:red;
-}
-.menu-add-table-element-minutes:valid{
-    color:default;
-}
 .menu-buttonwrapper{
     position:fixed;
     bottom:10px;

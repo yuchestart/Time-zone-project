@@ -39,7 +39,7 @@ uiInitScripts.push(function(){
                 $("menu-add-table-element-city-tab-view-city").class[0].innerText = this.innerText;
             }
             var properties = searchResults[i].properties;
-            searchItem.innerText = `${properties.CITY_NAME}${properties.ADMIN_NAME==properties.CITY_NAME?"":", "+properties.ADMIN_NAME}, ${properties.CNTRY_NAME}`;
+            searchItem.innerText = `${properties.CITY_NAME}${properties.ADMIN_NAME==properties.CITY_NAME||properties.ADMIN_NAME==properties.CNTRY_NAME?"":", "+properties.ADMIN_NAME}, ${properties.CNTRY_NAME}`;
             searchItem.appendChild(searchIndex)
             resultsElement.appendChild(searchItem)
         }

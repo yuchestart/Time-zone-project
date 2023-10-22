@@ -45,14 +45,26 @@ class Time extends Date{
         newdate.timeZoneOffset = 0;
         return newdate;
     }
-    returnSimplifiedString(returnDate = true){
-        var timestr = `${config.uses12hourclock?this.getHours()%12:this.getHours()}:${
+    returnSimplifiedString(returnDate = true,returnSeconds = true){
+        var hours = config.uses12hourclock?this.getHours()%12:this.getHours();
+        if(hours==0){
+            hours = 12;
+        }
+        var timestr = `${hours}:${
             this.getMinutes()<10?"0"+this.getMinutes().toString():this.getMinutes()
-        }:${
-            this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds()
-        }${config.uses12hourclock?this.getHours()>12?" PM":" AM":""}`
+        }${returnSeconds?":":""}${returnSeconds?
+            this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds():""
+        }${config.uses12hourclock?this.getHours()>=12?" PM":" AM":""}`
         var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
         return `${timestr}${returnDate?" "+datestr:""}`
+    }
+    returnDate(){
+        return `${this.getFullYear()}-${this.getMonth()+1<10?"0"+(this.getMonth()+1).toString():this.getMonth()+1}-${
+            this.getDate()+1<10?"0"+(this.getDate()+1).toString():this.getDate()+1
+        }`
+    }
+    returnTime(){
+        return this.toString().substring(11,16)
     }
 }
 loadedScripts+=1;
