@@ -46,26 +46,32 @@ class TableElement{
         this.location = x;
     }
     initializeHTML(){
-        let meElement = $("table-element-template").class[0].cloneNode(true)
+        this.html = $("table-element-template").class[0].cloneNode(true)
         this.updateHTML()
-        meElement.className = this.permanent?"permanent table-element":"table-element"
+        this.html.className = this.permanent?"permanent table-element":"table-element"
         if(this.permanent){
-            $("delete",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
-            $("rename",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
+            $("delete",$("td",this.html).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
+            $("rename",$("td",this.html).tag[TableElement.tableElementAttributes.location]).class[0].hidden = true;
         } else{
-            $("delete",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
+            $("delete",$("td",this.html).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
                 var index = table.indexOf(this)
                 table.splice(index,1)
                 $("table-element").class[index].parentNode.removeChild($("table-element").class[index])
             }
-            $("rename",$("td",meElement).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
+            $("rename",$("td",this.html).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
                 openMenus(Enum.RENAME_TABLE_ELEMENT,{
                     idx:table.indexOf(this)
                 });
             }
         }
-        this.html = meElement
-        $("maintable").id.appendChild(meElement)
+        $("table-element-compare-text",$("td",this.html).tag[TableElement.tableElementAttributes.customtime]).class[0].onclick = ()=>{
+            openCompare(this)
+        }
+        var compareInputs = $("table-element-compare-tab",$("td",this.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+        $("table-compare-tab-ok-button",compareInputs).class[0].onclick = ()=>{
+            closeCompare()
+        }
+        $("maintable").id.appendChild(this.html)
     }
     updateHTML(){
         $("span",$("td",this.html).tag[TableElement.tableElementAttributes.location]).tag[0].innerText = this.location;
@@ -73,62 +79,64 @@ class TableElement{
         var absdiff = Math.abs(this.utcdifference)
         var utcmin = absdiff%60;
         $("td",this.html).tag[TableElement.tableElementAttributes.timezone].innerText = `UTC${this.utcdifference>=0?"+":"-"}${(absdiff-absdiff%60)/60}:${utcmin<10?"0"+utcmin.toString():utcmin}`;
-        $("td",this.html).tag[TableElement.tableElementAttributes.customtime].innerText = this.customtime.returnSimplifiedString(true,false);
+        var customtimecolumn = $("td",this.html).tag[TableElement.tableElementAttributes.customtime];
+        $("table-element-compare-text",customtimecolumn).class[0].innerText = this.customtime.returnSimplifiedString(true,false);
     }
 }
 function updateTable(){
     for(var i=0; i<table.length; i++){
         table[i].updateTime();
-        table[i].setCustomTime(customTime);
+        table[i].setCustomTime(customTime.time);
         table[i].updateHTML();
     }
 }
 function addTableElement(){
     openMenus(Enum.ADD_TABLE_ELEMENT);
 }
-function openCompare(){
-    $("table-compare-tab-date-select").class[0].value = customTime.returnISODate();
+function updateCustomTime(tableElement){
+    var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+    var hoursvalue = parseInt($("table-compare-tab-hour-select",compareInputs).class[0].value);
+    var minutesvalue = parseInt($("table-compare-tab-minute-select",compareInputs).class[0].value);
+    var date = $("table-compare-tab-date-select",compareInputs).class[0].value;
+    var ampmvalue = $("table-compare-tab-half-select",compareInputs).class[0].value;
+    var hours = hoursvalue;
     if(config.uses12hourclock){
-        $("table-compare-tab-hour-select").class[0].max="12";
-        var hours = customTime.getHours()%12;
-        if(hours==0){
-            hours = 12;
-        }
-        $("table-compare-tab-hour-select").class[0].value = hours;
-        $("table-compare-tab-half-select").class[0].value = customTime.getHours()>=12?"PM":"AM";
-        $("table-compare-tab-half-select").class[0].hidden = false;
-        
-    } else {
-        $("table-compare-tab-hour-select").class[0].max="24";
-        $("table-compare-tab-hour-select").class[0].value = customTime.getHours()
-        $("table-compare-tab-half-select").class[0].hidden = true;
+        hours += ampmvalue=="AM"?0:12;
     }
-    $("table-compare-tab-minute-select").class[0].value = customTime.getMinutes()
+    hours = hours<10?"0"+hours.toString():hours.toString();
+    var minutes = minutesvalue<10?"0"+minutesvalue.toString():minutesvalue.toString();
+    customTime.time = new Time(`${date}T${hours}:${minutes}:00.000Z`);
 }
-function updateCustomTime(){
-    var hours = $("table-compare-tab-hour-select").class[0].value;
-    var minutes = $("table-compare-tab-minute-select").class[0].value;
-    var date = $("table-compare-tab-date-select").class[0].value;
-    var ampm = $("table-compare-tab-half-select").class[0].value;
+function openCompare(tableElement){
+    var compareText = $("table-element-compare-text",$("td", tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+    var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+    compareText.hidden = true;
+    compareInputs.hidden = false;
+    if(config.uses12hourclock){
+        $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("max","12")
+    } else {
+        $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("max","23")
+    }
+    $("table-compare-tab-hour-select",compareInputs).class[0].value = tableElement.customtime.returnHours();
+    $("table-compare-tab-minute-select",compareInputs).class[0].value = tableElement.customtime.returnMinutes();
+    $("table-compare-tab-half-select",compareInputs).class[0].value = tableElement.customtime.returnAMPM();
+    $("table-compare-tab-half-select",compareInputs).class[0].hidden = !config.uses12hourclock;
+    $("table-compare-tab-date-select",compareInputs).class[0].value = tableElement.customtime.returnDate();
+}
+function closeCompare(tableElement,updatecustomtime = false){
+    var compareText = $("table-element-compare-text",$("td", tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+    var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
+    compareText.hidden = false;
+    compareInputs.hidden = true;
+    if(updatecustomtime){
+        updateCustomTime(tableElement);
+    }
 }
 /**
  * @type {TableElement}
  */
 const table = [];
 uiInitScripts.push(function(){
-    $("setcustomtime").id.onclick = function(){
-        var settings = $("table-compare-tab").class;
-        if(settings[0].hidden){
-            openCompare();
-        }
-        for(var i=0; i<settings.length; i++){
-            settings[i].hidden = !settings[i].hidden
-        }
-        
-    }
-    var inputs = $("table-compare-tab-input").class;
-    for(var i=0; i<inputs.length; i++){
-        inputs[i].onchange = updateCustomTime;
-    }
+    setInterval(updateTable,100)
 })
 loadedScripts+=1;

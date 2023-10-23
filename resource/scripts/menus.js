@@ -25,10 +25,6 @@ function openMenus(type,info){
             MENU_RETURN_DATA.returnname = ""
             
             break;
-        case Enum.SET_CUSTOM_TIME:
-            $("menu-setcustomtime",$("menus").id).class[0].hidden = false;
-            MENU_RETURN_DATA.customtime = [null,null];
-            break;
         default:
             console.warn("Invalid menu type");
             break;

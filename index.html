@@ -27,22 +27,22 @@
                 </td>
                 <td>Lorem Ipsum</td>
                 <td>Lorem Ipsum</td>
-                <td>Lorem Ipsum</td>
-            </tr>
-            <tr><th>Location Name</th><th>Local time now</th><th>UTC Difference</th><th id="setcustomtime">Compare</th></tr>
-            <tr class="table-compare-tab" hidden>
-                <td colspan="2">
-                    <input type="date" class="table-compare-tab-date-select table-compare-tab-input">
+                <td>
+                    <span class="table-element-compare-text"></span>
+                    <div class="table-element-compare-tab" hidden>
+                        <input type="number" step = "1" min="0" max="23" class="table-compare-tab-hour-select table-compare-tab-input">&colon;
+                        <input type="number" step = "1" min="0" max="59" class="table-compare-tab-minute-select table-compare-tab-input">
+                        <select class="table-compare-tab-half-select table-compare-tab-input-wide">
+                            <option>AM</option>
+                            <option>PM</option>
+                        </select>
+                        <input type="date" class="table-compare-tab-date-select table-compare-tab-input-wider">
+                        <button class="table-compare-tab-ok-button">&checkmark;</button>
+                        <button class="table-compare-tab-cancel-button">X</button>
+                    </div>
                 </td>
-                <td colspan="2">
-                    <input type="number" min="0" max="24" class="table-compare-tab-hour-select table-compare-tab-input">&nbsp;&colon;&nbsp;
-                    <input type="number" min="0" max="59" class="table-compare-tab-minute-select table-compare-tab-input">&nbsp;
-                    <select class="table-compare-tab-half-select table-compare-tab-input">
-                        <option>AM</option>
-                        <option>PM</option>
-                    </select>
-                </td>
             </tr>
+            <tr><th>Location Name</th><th>Local time now</th><th>UTC Difference</th><th>Compare</th></tr>
             <tfoot>
             <tr id="addtotable"><td>&plus; Add more</td></tr>
             </tfoot>
@@ -96,7 +96,6 @@
                 <h2>Rename table element</h2>
                 <input placeholder="New name for table element" class="menu-search-bar menu-rename-table-element-input">
             </div>
-            <div></div>
             <div class="menu-buttonwrapper">
                 <div class="menu-buttongroup menu-buttonoptions-okcancel">
                     <button class="menu-button menu-button-ok">OK</button>

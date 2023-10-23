@@ -2,12 +2,13 @@ const config = {
     uses12hourclock:0,
     usesmonthdayyear:0,
 }
-
-let customTime = new Time()
+let customTime = {
+    time:new Time(),
+    changed:true
+}
 function updateConfig(){
     window.localStorage
 }
-
 function navigate(x){
     currentScreen = x;
     const sections = $("section",$("ui").id).class
@@ -36,6 +37,5 @@ function main(){
         navbarelements[i].onclick = function(){navigate(this.id.replace("nav",""))};
     }
     navigate("table")
-    setInterval(updateTable,100)
 }
 loadedScripts+=1;

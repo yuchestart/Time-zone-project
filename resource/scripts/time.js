@@ -18,7 +18,7 @@ function isleapyear(year){
 
 class Time extends Date{
     /**
-     * Lol 
+     * Time object with options to convert timezones :)
      * @param  {...String|Number|Date} theArgs 
      */
     constructor(...theArgs){
@@ -46,25 +46,36 @@ class Time extends Date{
         return newdate;
     }
     returnSimplifiedString(returnDate = true,returnSeconds = true){
-        var hours = config.uses12hourclock?this.getHours()%12:this.getHours();
-        if(hours==0){
-            hours = 12;
-        }
+        var hours = this.returnHours();
         var timestr = `${hours}:${
             this.getMinutes()<10?"0"+this.getMinutes().toString():this.getMinutes()
         }${returnSeconds?":":""}${returnSeconds?
             this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds():""
-        }${config.uses12hourclock?this.getHours()>=12?" PM":" AM":""}`
+        }${config.uses12hourclock?this.returnAMPM():""}`
         var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
         return `${timestr}${returnDate?" "+datestr:""}`
     }
     returnDate(){
-        return `${this.getFullYear()}-${this.getMonth()+1<10?"0"+(this.getMonth()+1).toString():this.getMonth()+1}-${
+        return `${
+            this.getFullYear()
+        }-${
+            this.getMonth()+1<10?"0"+(this.getMonth()+1).toString():this.getMonth()+1
+        }-${
             this.getDate()+1<10?"0"+(this.getDate()+1).toString():this.getDate()+1
         }`
     }
-    returnTime(){
-        return this.toString().substring(11,16)
+    returnHours(){
+        var hours = config.uses12hourclock?this.getHours()%12:this.getHours();
+        if(hours==0&&config.uses12hourclock){
+            hours = 12;
+        }
+        return hours;
+    }
+    returnMinutes(){
+        return this.getMinutes();
+    }
+    returnAMPM(){
+        return this.getHours()>12?"PM":"AM"
     }
 }
 loadedScripts+=1;

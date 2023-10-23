@@ -29,7 +29,7 @@ input:invalid{
     color:red;
 }
 input:valid{
-    color:default;
+    color:auto;
 }
 .data-holder{
     display:none;
