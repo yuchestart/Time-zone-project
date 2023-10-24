@@ -69,7 +69,10 @@ class TableElement{
         }
         var compareInputs = $("table-element-compare-tab",$("td",this.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
         $("table-compare-tab-ok-button",compareInputs).class[0].onclick = ()=>{
-            closeCompare()
+            closeCompare(this,true)
+        }
+        $("table-compare-tab-cancel-button",compareInputs).class[0].onclick = ()=>{
+            closeCompare(this)
         }
         $("maintable").id.appendChild(this.html)
     }
@@ -93,6 +96,10 @@ function updateTable(){
 function addTableElement(){
     openMenus(Enum.ADD_TABLE_ELEMENT);
 }
+/**
+ * 
+ * @param {TableElement} tableElement 
+ */
 function updateCustomTime(tableElement){
     var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
     var hoursvalue = parseInt($("table-compare-tab-hour-select",compareInputs).class[0].value);
@@ -105,9 +112,18 @@ function updateCustomTime(tableElement){
     }
     hours = hours<10?"0"+hours.toString():hours.toString();
     var minutes = minutesvalue<10?"0"+minutesvalue.toString():minutesvalue.toString();
-    customTime.time = new Time(`${date}T${hours}:${minutes}:00.000Z`);
+    var utc = -tableElement.timenow.timeZoneOffset;
+    var utchours = (Math.abs(utc)-Math.abs(utc)%60)/60
+    var utcminutes = Math.abs(utc)%60
+    utchours = utchours<10?"0"+utchours.toString():utchours.toString();
+    utcminutes = utcminutes<10?"0"+utcminutes.toString():utcminutes.toString();
+    customTime.time = new Time(`${date}T${hours}:${minutes}:00.000${utc<0?"-":"+"}${utchours}:${utcminutes}`);
 }
 function openCompare(tableElement){
+    if(table.openedCompare){
+        return
+    }
+    table.openedCompare = true;
     var compareText = $("table-element-compare-text",$("td", tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
     var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
     compareText.hidden = true;
@@ -124,6 +140,7 @@ function openCompare(tableElement){
     $("table-compare-tab-date-select",compareInputs).class[0].value = tableElement.customtime.returnDate();
 }
 function closeCompare(tableElement,updatecustomtime = false){
+    table.openedCompare = false;
     var compareText = $("table-element-compare-text",$("td", tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
     var compareInputs = $("table-element-compare-tab",$("td",tableElement.html).tag[TableElement.tableElementAttributes.customtime]).class[0];
     compareText.hidden = false;
