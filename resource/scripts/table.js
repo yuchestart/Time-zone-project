@@ -153,7 +153,61 @@ function closeCompare(tableElement,updatecustomtime = false){
  * @type {TableElement}
  */
 const table = [];
+let drag = {
+    isDragging:false,
+    dragID:null,
+}
 uiInitScripts.push(function(){
-    setInterval(updateTable,100)
+    setInterval(updateTable,100);
+    var theclock = $("sectionworldclock").id
+    theclock.addEventListener("pointerdown",function(e){
+        if(e.target === $("seperator").class[0] && !drag.isDragging){
+            drag.isDragging = true;
+            drag.dragID = e.pointerID
+        }
+    });
+    theclock.addEventListener("pointermove",function(e){
+        if(!drag.isDragging || drag.dragID !== e.pointerID){
+            return false;
+        }
+        var pointerPosition = e.clientY;
+        var boxMinWidth = 165;
+        var panelA = $("map-tab").class[0];
+        var panelB = $("table-tab").class[0];
+        var handler = $("seperator").class[0];
+        var pointerPositionCorrected = pointerPosition-6
+        var minimized = clamp(pointerPositionCorrected,boxMinWidth,window.innerHeight-boxMinWidth-65);
+        var minimized2 = clamp(pointerPosition,boxMinWidth,window.innerHeight-boxMinWidth-65);
+        panelA.style.height = minimized+"px";
+        panelB.style.height = `calc(100vh - ${minimized+65}px)`;
+        panelB.style.top = minimized2+"px";
+        handler.style.top = pointerPositionCorrected+"px";
+    })
+    theclock.addEventListener("pointerup",function(e){
+        if(e.pointerID === drag.dragID){
+            drag.isDragging = false;
+            drag.dragID = null;
+            var panelARect = $("map-tab").class[0].getBoundingClientRect();
+            var panelBRect = $("table-tab").class[0].getBoundingClientRect();
+            var handlerRect = $("seperator").class[0].getBoundingClientRect().y;
+            var panelA = $("map-tab").class[0];
+            var panelB = $("table-tab").class[0];
+            var handle = $("seperator").class[0];
+            if(handlerRect+3>panelBRect.y){
+                console.log("Below")
+                panelB.style.top = `calc(100vh - 65px)`;
+                panelB.style.height = "65px";
+                panelA.style.height = `calc(100vh - 65px)`;
+                handle.style.top = `calc(100vh - 77px)`;
+            }
+            if(handlerRect+3<panelARect.height){
+                console.log("Above")
+                panelB.style.top = `0px`;
+                panelB.style.height = "calc(100vh - 65px)";
+                panelA.style.height = `0px`;
+                handle.style.top = `0px`;
+            }
+        }
+    })
 })
 loadedScripts+=1;

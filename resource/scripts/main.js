@@ -36,6 +36,6 @@ function main(){
     for(var i=0; i<navbarelements.length; i++){
         navbarelements[i].onclick = function(){navigate(this.id.replace("nav",""))};
     }
-    navigate("table")
+    navigate("worldclock")
 }
 loadedScripts+=1;

@@ -9,53 +9,61 @@
 </head>
 <body>
     <div id="ui" class="fullscreen-interface-element">
-        <div class="section" id="sectiontable" hidden>
-        <table id="maintable">
-            
-            <tr class="table-element-template">
-                <td>
-                    <span>Lorem Ipsum</span>
-                    <div class="table-element-button-group">
-                        <button class="rename">
-                            &#x270E;
-                        </button>
-                        <button class="delete">
-                            X
-                        </button>
-                        
-                    </div>
-                </td>
-                <td>Lorem Ipsum</td>
-                <td>Lorem Ipsum</td>
-                <td>
-                    <span class="table-element-compare-text"></span>
-                    <div class="table-element-compare-tab" hidden>
-                        <input type="number" step = "1" min="0" max="23" class="table-compare-tab-hour-select table-compare-tab-input">&colon;
-                        <input type="number" step = "1" min="0" max="59" class="table-compare-tab-minute-select table-compare-tab-input">
-                        <select class="table-compare-tab-half-select table-compare-tab-input-wide">
-                            <option>AM</option>
-                            <option>PM</option>
-                        </select>
-                        <input type="date" class="table-compare-tab-date-select table-compare-tab-input-wider">
-                        <button class="table-compare-tab-ok-button">&checkmark;</button>
-                        <button class="table-compare-tab-cancel-button">X</button>
-                    </div>
-                </td>
-            </tr>
-            <tr><th>Location Name</th><th>Local time now</th><th>UTC Difference</th><th>Compare</th></tr>
-            <tfoot>
-            <tr id="addtotable"><td>&plus; Add more</td></tr>
-            </tfoot>
-        </table>
-        <div class="footer"></div>
-        </div>
-        <div class="section" id="sectionworldclock" hidden>
-            <canvas id="worldmap"></canvas>
-            <div class="worldmapbuttongroup">
-                <button class="worldmapbutton worldmapbutton-zoomin"></button>
-                <button class="worldmapbutton worldmapbutton-zoomout"></button>
-                <button class="worldmapbutton worldmapbutton-zoomhome"></button>
+        <div class="section" id="sectionworldclock">
+            <div class="tab map-tab">
+                <canvas id="worldmap"></canvas>
+                <div class="worldmapbuttongroup">
+                    <button class="worldmapbutton worldmapbutton-zoomin"></button>
+                    <button class="worldmapbutton worldmapbutton-zoomout"></button>
+                    <button class="worldmapbutton worldmapbutton-zoomhome"></button>
+                </div>
             </div>
+            <div class="tab table-tab">
+            <table id="maintable">
+
+                <tr class="table-element-template">
+                    <td>
+                        <span>Lorem Ipsum</span>
+                        <div class="table-element-button-group">
+                            <button class="rename">
+                                &#x270E;
+                            </button>
+                            <button class="delete">
+                                X
+                            </button>
+
+                        </div>
+                    </td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>
+                        <span class="table-element-compare-text"></span>
+                        <div class="table-element-compare-tab" hidden>
+                            <input type="number" step = "1" min="0" max="23" class="table-compare-tab-hour-select table-compare-tab-input">&colon;
+                            <input type="number" step = "1" min="0" max="59" class="table-compare-tab-minute-select table-compare-tab-input">
+                            <select class="table-compare-tab-half-select table-compare-tab-input-wide">
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            <input type="date" class="table-compare-tab-date-select table-compare-tab-input-wider">
+                            <button class="table-compare-tab-ok-button">&checkmark;</button>
+                            <button class="table-compare-tab-cancel-button">X</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr><th>Location Name</th><th>Local time now</th><th>UTC Difference</th><th>Compare</th></tr>
+                <tfoot>
+                <tr id="addtotable"><td>&plus; Add more</td></tr>
+                </tfoot>
+            </table>
+            <div class="footer"></div>
+            </div>
+            <div class="seperator">
+                <hr />
+            </div>
+        </div>
+        <div class="section" id="sectionsettings">
+            <h1>THE SETTINGS :)</h1>
         </div>
     </div>
     <div id="menus" class="fullscreen-interface-element" hidden>
@@ -114,8 +122,8 @@
         </div>
     </div>
     <div id="navbar">
-        <div class="navbaritem" id="tablenav"></div>
         <div class="navbaritem" id="worldclocknav"></div>
+        <div class="navbaritem" id="settingsnav"></div>
     </div>
     <div id="splash" class="fullscreen-interface-element">
         <span class="splashtext">World O' Clock</span>

@@ -1,18 +1,15 @@
-
-
-
 #sectionworldclock{
     touch-action:auto;
 }
 #worldmap{
     background-color:#a4cfff;
     width:100vw;
-    height:calc(100vh - 65px);
+    height:calc(100%);
 }
 .worldmapbuttongroup{
     position:absolute;
     right:5px;
-    bottom:70px;
+    bottom:5px;
 }
 
 .worldmapbutton-zoomin{

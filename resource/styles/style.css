@@ -37,3 +37,40 @@ input:valid{
 html,body{
     touch-action:none;
 }
+.table-tab{
+    top:50%;
+    padding-top:10px;
+}
+.map-tab{
+    top:0px;
+}
+.tab{
+    height:50%;
+    position:absolute;
+    width:100%;
+    left:0px;
+}
+.seperator{
+    position:absolute;
+    width:100%;
+    left:0px;
+    font-size:4px;
+    top:calc(50% - 6px);
+    border-top:3px solid rgb(170, 170, 170);
+    border-bottom:3px solid rgb(170, 170, 170);
+    background-color:rgb(170, 170, 170);
+    text-align:center;
+}
+.seperator>hr{
+    margin-right:0px;
+    margin-left:50px;
+    border-right:0px;
+    max-width:calc(100vw - 100px);
+    transition:top 1s;
+}
+.seperator-bottom{
+    top:calc(100vh - 68px);
+}
+.seperator-top{
+    top:3px;
+}

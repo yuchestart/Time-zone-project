@@ -2,6 +2,7 @@ const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
 const uiInitScripts = [];
 const scriptlist = [
+    "time",
     "renderer/renderer",
     "renderer/world_timezone",
     "renderer/world_countries",
@@ -13,7 +14,7 @@ const scriptlist = [
     "newtableelementmenu",
     "worldclock",
     "table",
-    "time",
+    
     "main",
 ];
 const stylelist = [
