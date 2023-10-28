@@ -1,24 +1,10 @@
 const scripturl = "./resource/scripts/"
 const styleurl = "./resource/styles/"
 const uiInitScripts = [];
-const scriptlist = [
-    "time",
-    "renderer/renderer",
-    "renderer/world_timezone",
-    "renderer/world_countries",
-    "renderer/world_cities",
-    "renderer/pointinpolygon",
-    "citysearch",
-    "menus",
-    "popup",
-    "newtableelementmenu",
-    "worldclock",
-    "table",
-    
-    "main",
-];
+
 const stylelist = [
     "splash.css",
+    "settings.css",
     "menu.css",
     "popup.css",
     "worldmap.css",
@@ -35,17 +21,8 @@ function loadScripts(){
         styler.href = styleurl+stylelist[i];
         document.getElementsByTagName("head")[0].appendChild(styler)
     }
-    for(var i=0; i<scriptlist.length; i++){
-        var scripter = document.createElement("script");
-        scripter.src = scripturl + scriptlist[i] + ".js";
-        //scripter.defer = true
-        document.getElementsByTagName("head")[0].appendChild(scripter)
-    }
-    loadedScriptsInterval = setInterval(function(){
-        if(loadedScripts == scriptlist.length){
-            clearInterval(loadedScriptsInterval);
-            main()
-        }
+    loadedScriptsInterval = setTimeout(function(){
+        main()
     },1000)
 }
 window.onload = loadScripts;

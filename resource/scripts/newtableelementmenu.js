@@ -32,7 +32,6 @@ uiInitScripts.push(function(){
             searchItem.setAttribute("class","search-result");
             searchItem.onclick = function(){
                 var index = parseInt($("data-holder",this).class[0].innerText);
-                console.log(index)
                 MENU_RETURN_DATA.city = this.innerText.split(", ");
                 MENU_RETURN_DATA.timezone = cities.features[index].properties.ZONE_
                 MENU_RETURN_DATA.latlong = cities.features[index].geometry.coordinates

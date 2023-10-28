@@ -12,13 +12,13 @@
         background-color:rgb(62, 62, 62);
     }
     .navbaritem{
-        background-color:rgb(88, 88, 88) !important;
+        background-color:rgb(62, 62, 62) !important;
     }
-    #navbaritem:active{
+    .navbaritem:active{
         background-color:rgb(70, 70, 70) !important;
     }
     #settingsnav{
-        background-image:url(../img/settings-dark.svg);
+        background-image:url(../img/settings-dark.svg) !important;
     }
     #worldclocknav{
         background-image:url(../img/world-clock-dark.svg);

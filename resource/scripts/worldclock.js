@@ -7,10 +7,7 @@ function drawWorldMap(){
     if(currentScreen!="worldclock"){
         return
     }
-    //globalOffset[0]+=15
-    
     var canvasSize = recalibrate()
-    //console.log(canvasSize)
     globalOffset[0] = globalOffset[0]%400
     tempGlobalOffset[0] = tempGlobalOffset[0]%400
     initialZoom = canvasSize[0]/400
@@ -23,24 +20,20 @@ function drawWorldMap(){
     for(var i=0; i<table.length; i++){
         if(table[i].latlong[0] !== null){
             var point = convertToXY(table[i].latlong[0],table[i].latlong[1],ctx,initialZoom+zoom,offset);
-            ctx.font = "15px sans-serif"
+            ctx.font = "0.8em sans-serif"
             var text = `${table[i].timenow.returnSimplifiedString()}`
             var textlength = ctx.measureText(text).width/2
-            //console.log(point,textlength)
             ctx.beginPath()
             ctx.moveTo(point[0],point[1])
             ctx.lineTo(point[0]+7,point[1]-7)
-            ctx.lineTo(point[0]+textlength+7,point[1]-6)
-            ctx.lineTo(point[0]+textlength+7,point[1]-25)
+            ctx.lineTo(point[0]+textlength+3,point[1]-6)
+            ctx.lineTo(point[0]+textlength+3,point[1]-25)
             ctx.lineTo(point[0]-textlength-7,point[1]-25)
             ctx.lineTo(point[0]-textlength-7,point[1]-6)
             ctx.lineTo(point[0]-7,point[1]-7)
             ctx.closePath()
             ctx.fillStyle = "white"
-            ctx.strokeStyle = "red";
-            ctx.lineWidth = 3;
             ctx.fill()
-            ctx.stroke()
             ctx.fillStyle = "black"
             ctx.fillText(text,point[0]-textlength-3,point[1]-10)
         }
@@ -82,15 +75,15 @@ function pmovehandler(event){
         zoom = scale-1+prevZoom;
         zoom = clamp(zoom,10,0);
     } else {
-        const deltaX = (event.touches[0].pageX - start.x)/2/(zoom+1);
-        const deltaY = (event.touches[0].pageY - start.y)/2/(zoom+1);
+        const deltaX = (event.touches[0].pageX - start.x)/(zoom+1);
+        const deltaY = (event.touches[0].pageY - start.y)/(zoom+1);
         tempGlobalOffset = [deltaX,deltaY]
     }
-    //console.log(tempGlobalOffset)
 }
 function puphandler(event){
     prevZoom = zoom;
     globalOffset = [globalOffset[0]+tempGlobalOffset[0],globalOffset[1]+tempGlobalOffset[1]];
+    globalOffset[1] = clamp(globalOffset[1],100,-100)
     tempGlobalOffset = [0,0]
     if(event.touches.length === 1){
         start.x=event.touches[0].pageX
@@ -128,4 +121,3 @@ uiInitScripts.push(function(){
     onNavigate.worldclock = drawWorldMap;
     setupGestures()
 })
-loadedScripts+=1;

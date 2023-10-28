@@ -21,7 +21,7 @@ class TableElement{
         this.initializeHTML();
         this.id = table.length;
         table.push(this)
-        
+        storeTable()
     }
     /**
      * 
@@ -57,11 +57,13 @@ class TableElement{
                 var index = table.indexOf(this)
                 table.splice(index,1)
                 $("table-element").class[index].parentNode.removeChild($("table-element").class[index])
+                storeTable()
             }
             $("rename",$("td",this.html).tag[TableElement.tableElementAttributes.location]).class[0].onclick = ()=>{
                 openMenus(Enum.RENAME_TABLE_ELEMENT,{
                     idx:table.indexOf(this)
                 });
+                
             }
         }
         $("table-element-compare-text",$("td",this.html).tag[TableElement.tableElementAttributes.customtime]).class[0].onclick = ()=>{
@@ -85,12 +87,41 @@ class TableElement{
         var customtimecolumn = $("td",this.html).tag[TableElement.tableElementAttributes.customtime];
         $("table-element-compare-text",customtimecolumn).class[0].innerText = this.customtime.returnSimplifiedString(true,false);
     }
+    returnProperties(){
+        return {
+            location:this.location,
+            timedifference:this.utcdifference,
+            permanent:this.permanent,
+            localtime:this.isLocaltime,
+            latlong:this.latlong
+        }
+    }
 }
 function updateTable(){
     for(var i=0; i<table.length; i++){
         table[i].updateTime();
         table[i].setCustomTime(customTime.time);
         table[i].updateHTML();
+    }
+}
+function storeTable(){
+    var tableElements = []
+    for(var i=0; i<table.length; i++){
+        tableElements.push(table[i].returnProperties())
+    }
+    localStorage.setItem("table",JSON.stringify(tableElements));
+}
+function loadTable(){
+    var val = localStorage.getItem("table");
+    if(val === null){
+        new TableElement("Local Time",0,true,true)
+        new TableElement("Coordinated Universal Time",0,true,false);
+        storeTable();
+    } else {
+        val = JSON.parse(val);
+        for(var i=0; i<val.length; i++){
+            new TableElement(val[i].location,val[i].timedifference,val[i].permanent,val[i].localtime,val[i].latlong);
+        }
     }
 }
 function addTableElement(){
@@ -156,6 +187,7 @@ const table = [];
 let drag = {
     isDragging:false,
     dragID:null,
+    full:null,
 }
 uiInitScripts.push(function(){
     setInterval(updateTable,100);
@@ -179,7 +211,7 @@ uiInitScripts.push(function(){
         var minimized = clamp(pointerPositionCorrected,boxMinWidth,window.innerHeight-boxMinWidth-65);
         var minimized2 = clamp(pointerPosition,boxMinWidth,window.innerHeight-boxMinWidth-65);
         panelA.style.height = minimized+"px";
-        panelB.style.height = `calc(100vh - ${minimized+65}px)`;
+        panelB.style.height = `calc(100vh - ${minimized+73}px)`;
         panelB.style.top = minimized2+"px";
         handler.style.top = pointerPositionCorrected+"px";
     })
@@ -194,14 +226,11 @@ uiInitScripts.push(function(){
             var panelB = $("table-tab").class[0];
             var handle = $("seperator").class[0];
             if(handlerRect+3>panelBRect.y){
-                console.log("Below")
                 panelB.style.top = `calc(100vh - 65px)`;
                 panelB.style.height = "65px";
                 panelA.style.height = `calc(100vh - 65px)`;
                 handle.style.top = `calc(100vh - 77px)`;
-            }
-            if(handlerRect+3<panelARect.height){
-                console.log("Above")
+            }else if(handlerRect+3<panelARect.height){
                 panelB.style.top = `0px`;
                 panelB.style.height = "calc(100vh - 65px)";
                 panelA.style.height = `0px`;
@@ -210,4 +239,3 @@ uiInitScripts.push(function(){
         }
     })
 })
-loadedScripts+=1;

@@ -13,4 +13,3 @@ uiInitScripts.push(function(){
         $("popup-container").id.hidden = true;
     }
 });
-loadedScripts+=1;

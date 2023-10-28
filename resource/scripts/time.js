@@ -52,7 +52,7 @@ class Time extends Date{
         }${returnSeconds?":":""}${returnSeconds?
             this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds():""
         }${config.uses12hourclock?this.returnAMPM():""}`
-        var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
+        var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
         return `${timestr}${returnDate?" "+datestr:""}`
     }
     returnDate(){
@@ -78,4 +78,3 @@ class Time extends Date{
         return this.getHours()>12?"PM":"AM"
     }
 }
-loadedScripts+=1;

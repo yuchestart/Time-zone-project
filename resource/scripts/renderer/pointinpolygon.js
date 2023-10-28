@@ -21,7 +21,6 @@ function detectPinP(poly, n, p){
     }
     function isIntersect(l1, l2)
     {
-        //console.log(l1,l2)
     	let dir1 = direction(l1[0], l1[1], l2[0]);
     	let dir2 = direction(l1[0], l1[1], l2[1]);
     	let dir3 = direction(l2[0], l2[1], l1[0]);
@@ -60,8 +59,6 @@ function getTimezoneOfCoordinates(lat,long){
     for(var i=0; i<features.length; i++){
         var polygon = [];
         var coordinates = features[i].geometry.coordinates
-        console.log(i)
-        console.log(features[i].properties)
         if(features[i].geometry.type == "MultiPolygon"){
             for(var j=0; j<coordinates.length; j++){
                 polygon.push(...coordinates[j][0])
@@ -71,10 +68,8 @@ function getTimezoneOfCoordinates(lat,long){
                 polygon.push(...coordinates[0])
         }
         
-        console.log(polygon)
         if(detectPinP(polygon,polygon.length,[long,lat])){
             return features[i].properties.ZONE_
         }
     }
 }
-loadedScripts+=1;

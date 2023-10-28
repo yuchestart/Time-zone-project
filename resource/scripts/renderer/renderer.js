@@ -31,6 +31,7 @@ function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0
         ctx.fillStyle = bg;
         ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height)
     }
+    var sum = 0
     var features = shape.features;
     for(var f=0; f<features.length; f++){
         if(features[f].geometry.type == "MultiPolygon"){
@@ -39,6 +40,7 @@ function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0
                 ctx.beginPath()
                 ctx.moveTo(...convertToXY(polycoords[0][0],polycoords[0][1],ctx,zoom,moved))
                 for(var j=1; j<polycoords.length; j++){
+                    sum+=1
                     ctx.lineTo(...convertToXY(polycoords[j][0],polycoords[j][1],ctx,zoom,moved))
                 }
                 ctx.fillStyle = fill
@@ -54,6 +56,7 @@ function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0
                 ctx.beginPath()
                 ctx.moveTo(...convertToXY(polycoords[0][0],polycoords[0][1],ctx,zoom,moved))
                 for(var j=1; j<polycoords.length; j++){
+                    sum+=1
                     ctx.lineTo(...convertToXY(polycoords[j][0],polycoords[j][1],ctx,zoom,moved))
                 }
                 ctx.fillStyle = fill
@@ -92,4 +95,3 @@ function timezoneOfPoint(lat,long){
     }
 }
 
-loadedScripts+=1;

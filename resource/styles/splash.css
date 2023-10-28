@@ -1,5 +1,16 @@
+@media (prefers-color-scheme: dark){
+    #splash{
+        background:rgb(48, 48, 48) !important;
+    }
+}
 #splash{
     background:white;
+    animation-name:fadeout;
+    animation-duration:1s;
+    animation-fill-mode:forwards;
+    animation-play-state:paused;
+    z-index:1000;
+    
 }
 .splashtext{
     position:absolute;
@@ -9,4 +20,12 @@
     text-align:center;
     font-family:monospace;
     font-size:10vh;
+}
+@keyframes fadeout{
+    from{
+        opacity:1;
+    }
+    to{
+        opacity:0;
+    }
 }

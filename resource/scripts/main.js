@@ -1,6 +1,6 @@
 const config = {
-    uses12hourclock:0,
-    usesmonthdayyear:0,
+    uses12hourclock:1,
+    usesmonthdayyear:1,
 }
 let customTime = {
     time:new Time(),
@@ -24,13 +24,19 @@ function navigate(x){
 }
 
 function main(){
+    //Load settings
+    loadConfig();
     //Run UIInit scripts
     for(var i=0; i<uiInitScripts.length; i++){
         uiInitScripts[i]();
     }
-    $("splash").id.hidden = true; // Will replace with animation later
-    new TableElement("Local Time",0,true,true)
-    new TableElement("Coordinated Universal Time",0,true,false)
+    $("splash").id.style.animationPlayState = "running";
+    $("splash").id.onanimationend = function(){
+        this.hidden = true;
+    }
+    //$("splash").id.hidden = true; // Will replace with animation later
+    //Load the table
+    loadTable();
     $("addtotable").id.onclick = addTableElement;
     const navbarelements = $("navbaritem",$("navbar").id).class
     for(var i=0; i<navbarelements.length; i++){

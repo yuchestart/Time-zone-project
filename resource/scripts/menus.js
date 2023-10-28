@@ -73,6 +73,7 @@ function menubuttonresponse(e){
                 var val = $("menu-rename-table-element-input").class[0].value
                 if(val){
                     table[MENU_RETURN_DATA.info.idx].rename(val);
+                    storeTable()
                 } else {
                     openPopup("Choose a name or press cancel if you don't want to rename.");
                     return;
@@ -96,4 +97,3 @@ uiInitScripts.push(function(){
         menubuttons[i].onclick = menubuttonresponse;
     }
 })
-loadedScripts+=1;

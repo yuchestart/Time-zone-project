@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="./resource/scripts/vars.js"></script>
+    <script src="./resource/scripts/time.js"></script>
     <script src="./resource/scripts/loader.js"></script>
+    <script src="./resource/scripts/renderer/pointinpolygon.js"></script>
+    <script src="./resource/scripts/renderer/world_cities.js"></script>
+    <script src="./resource/scripts/renderer/world_countries.js"></script>
+    <script src="./resource/scripts/renderer/world_timezone.js"></script>
+    <script src="./resource/scripts/renderer/renderer.js"></script>
+    <script src="./resource/scripts/citysearch.js"></script>
+    <script src="./resource/scripts/menus.js"></script>
+    <script src="./resource/scripts/popup.js"></script>
+    <script src="./resource/scripts/newtableelementmenu.js"></script>
+    <script src="./resource/scripts/worldclock.js"></script>
+    <script src="./resource/scripts/table.js"></script>
+    <script src="./resource/scripts/settings.js"></script>
+    <script src="./resource/scripts/main.js"></script>
     <title>World O' clock WebView Interface</title>
 </head>
 <body>
@@ -63,7 +77,15 @@
             </div>
         </div>
         <div class="section" id="sectionsettings">
-            <h1>THE SETTINGS :)</h1>
+            <h1>Settings</h1>
+            Clock format: <select value="12 hours" class="select-clock-format">
+                <option>12 hours</option>
+                <option>24 hours</option>
+            </select><br>
+            Date format: <select value="mm/dd/yyyy" class="select-date-format">
+                <option>dd/mm/yyyy</option>
+                <option>mm/dd/yyyy</option>
+            </select>
         </div>
     </div>
     <div id="menus" class="fullscreen-interface-element" hidden>
@@ -73,7 +95,6 @@
                 <h3>Pick your: <select value="City" class="menu-add-table-element-type-selector">
                     <option>City</option>
                     <option>Time zone</option>
-                    <option>Map location</option>
                 </select></h3>
                 <div class="menu-add-table-element-tab menu-add-table-element-city-tab">
                     <span>Selected: <span class="menu-add-table-element-city-tab-view-city">Select a city</span></span><br>
@@ -95,9 +116,6 @@
                     <input class="menu-add-table-element-hours menu-add-table-element-time" min="0" max="14" step="1" type="number"></input>
                     <span>&colon;</span>
                     <input class="menu-add-table-element-minutes menu-add-table-element-time" min="0" max="59" step="1" type="number"><br>
-                </div>
-                <div class="menu-add-table-element-tab  menu-add-table-element-maplocation-tab" hidden>
-                    <canvas class="menu-add-table-element-map"></canvas>
                 </div>
             </div>
             <div class="menu-ui menu-renametableelement">
