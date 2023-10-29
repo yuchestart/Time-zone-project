@@ -137,18 +137,31 @@ function updateCustomTime(tableElement){
     var minutesvalue = parseInt($("table-compare-tab-minute-select",compareInputs).class[0].value);
     var date = $("table-compare-tab-date-select",compareInputs).class[0].value;
     var ampmvalue = $("table-compare-tab-half-select",compareInputs).class[0].value;
+    console.log(ampmvalue)
     var hours = hoursvalue;
     if(config.uses12hourclock){
+        if(hours == 12){
+            hours = 0;
+        }
         hours += ampmvalue=="AM"?0:12;
     }
-    hours = hours<10?"0"+hours.toString():hours.toString();
-    var minutes = minutesvalue<10?"0"+minutesvalue.toString():minutesvalue.toString();
     var utc = -tableElement.timenow.timeZoneOffset;
+    //console.log(utc)
     var utchours = (Math.abs(utc)-Math.abs(utc)%60)/60
     var utcminutes = Math.abs(utc)%60
-    utchours = utchours<10?"0"+utchours.toString():utchours.toString();
-    utcminutes = utcminutes<10?"0"+utcminutes.toString():utcminutes.toString();
-    customTime.time = new Time(`${date}T${hours}:${minutes}:00.000${utc<0?"-":"+"}${utchours}:${utcminutes}`);
+    //utchours = utchours<10?"0"+utchours.toString():utchours.toString();
+    //utcminutes = utcminutes<10?"0"+utcminutes.toString():utcminutes.toString();
+    var newtime = new Time();
+    console.dir(newtime)
+    newtime = newtime.convertTimeZone(newtime,utchours,utcminutes)
+    newtime.setFullYear(parseInt(date.slice(0,4)));
+    newtime.setMonth(parseInt(date.slice(5,7))-1)
+    newtime.setDate(parseInt(date.slice(8,11)))
+    newtime.setHours(hours);
+    newtime.setMinutes(minutesvalue)
+    newtime.setSeconds(0)
+    console.dir(newtime)
+    customTime.time = newtime;
 }
 function openCompare(tableElement){
     if(table.openedCompare){
@@ -161,8 +174,10 @@ function openCompare(tableElement){
     compareInputs.hidden = false;
     if(config.uses12hourclock){
         $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("max","12")
+        $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("min","1")
     } else {
         $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("max","23")
+        $("table-compare-tab-hour-select",compareInputs).class[0].setAttribute("min","0")
     }
     $("table-compare-tab-hour-select",compareInputs).class[0].value = tableElement.customtime.returnHours();
     $("table-compare-tab-minute-select",compareInputs).class[0].value = tableElement.customtime.returnMinutes();

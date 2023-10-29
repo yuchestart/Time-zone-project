@@ -22,6 +22,5 @@ uiInitScripts.push(function(){
         config.usesmonthdayyear = this.value == "mm/dd/yyyy";
         storeConfig();
     }
-    
 })
 loadedScripts+=1

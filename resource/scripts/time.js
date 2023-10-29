@@ -31,18 +31,31 @@ class Time extends Date{
      * @param {Number} h 
      * @param {Number} m 
      */
-    convertTimeZone(date,h,m,implace){
+    convertTimeZone(date,h,m,implace,log){
         var newdate = implace?this:new Time(date);
-        newdate.setHours(newdate.getUTCHours()+h)
-        newdate.setMinutes(newdate.getUTCMinutes()+m)
-        newdate.timeZoneOffset = -(h*60+m);
+        newdate.timeZoneOffset = date.timeZoneOffset;
+        newdate = newdate.setToUTC(newdate,0,log)
+        if(log)
+            console.log(newdate,newdate.timeZoneOffset,h,m,newdate.getHours())
+        newdate.setHours(newdate.getHours()+h)
+        newdate.setMinutes(newdate.getMinutes()+m)
+        newdate.timeZoneOffset = Math.sign(h)*(Math.abs(h)*60+m);
         return newdate;
     }
-    setToUTC(date,implace){
+    setToUTC(date,implace,log){
         var newdate = implace?this:new Time(date);
-        newdate.setHours(newdate.getUTCHours())
-        newdate.setMinutes(newdate.getUTCMinutes())
+        newdate.timeZoneOffset = date.timeZoneOffset;
+        if(log){
+            console.log(newdate.timeZoneOffset)
+            console.log(newdate)
+        }
+        var offset = -newdate.timeZoneOffset;
+        var hours = (offset-offset%60)/60
+        var minutes = offset%60
+        newdate.setHours(newdate.getHours()-hours)
+        newdate.setMinutes(newdate.getMinutes()-minutes)
         newdate.timeZoneOffset = 0;
+        
         return newdate;
     }
     returnSimplifiedString(returnDate = true,returnSeconds = true){
@@ -51,8 +64,8 @@ class Time extends Date{
             this.getMinutes()<10?"0"+this.getMinutes().toString():this.getMinutes()
         }${returnSeconds?":":""}${returnSeconds?
             this.getSeconds()<10?"0"+this.getSeconds().toString():this.getSeconds():""
-        }${config.uses12hourclock?this.returnAMPM():""}`
-        var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()+1}/${this.getFullYear()}`
+        }${config.uses12hourclock?" "+this.returnAMPM():""}`
+        var datestr = `${config.usesmonthdayyear?this.getMonth()+1:this.getDate()}/${!config.usesmonthdayyear?this.getMonth()+1:this.getDate()}/${this.getFullYear()}`
         return `${timestr}${returnDate?" "+datestr:""}`
     }
     returnDate(){
@@ -61,7 +74,7 @@ class Time extends Date{
         }-${
             this.getMonth()+1<10?"0"+(this.getMonth()+1).toString():this.getMonth()+1
         }-${
-            this.getDate()+1<10?"0"+(this.getDate()+1).toString():this.getDate()+1
+            this.getDate()<10?"0"+(this.getDate()).toString():this.getDate()
         }`
     }
     returnHours(){
@@ -75,6 +88,6 @@ class Time extends Date{
         return this.getMinutes();
     }
     returnAMPM(){
-        return this.getHours()>12?"PM":"AM"
+        return this.getHours()>=12?"PM":"AM"
     }
 }
