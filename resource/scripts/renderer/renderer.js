@@ -24,22 +24,22 @@ function recalibrate(){
     ctx.canvas.width = ctx.canvas.clientWidth;
     ctx.canvas.height = ctx.canvas.clientHeight;
     return [ctx.canvas.clientWidth,ctx.canvas.clientHeight]
-}
+}   
 function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0,0)",stroke='black',bg="rgba(0,0,0,0)",size=1){
     if(!overlay){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
         ctx.fillStyle = bg;
         ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height)
     }
-    var sum = 0
-    var features = shape.features;
-    for(var f=0; f<features.length; f++){
+    let sum = 0
+    let features = shape.features;
+    for(let f=0; f<features.length; f++){
         if(features[f].geometry.type == "MultiPolygon"){
-            for(var i=0; i<features[f].geometry.coordinates.length; i++){
-                var polycoords = features[f].geometry.coordinates[i][0]
+            for(let i=0; i<features[f].geometry.coordinates.length; i++){
+                let polycoords = features[f].geometry.coordinates[i][0]
                 ctx.beginPath()
                 ctx.moveTo(...convertToXY(polycoords[0][0],polycoords[0][1],ctx,zoom,moved))
-                for(var j=1; j<polycoords.length; j++){
+                for(let j=1; j<polycoords.length; j++){
                     sum+=1
                     ctx.lineTo(...convertToXY(polycoords[j][0],polycoords[j][1],ctx,zoom,moved))
                 }
@@ -51,8 +51,8 @@ function renderShape(ctx,shape,overlay=false,zoom=1,moved=[0,0],fill="rgba(0,0,0
                 ctx.fill()
             }
         } else if(features[f].geometry.type == "Polygon"){
-            for(var i=0; i<features[f].geometry.coordinates.length; i++){
-                var polycoords = features[f].geometry.coordinates[i];
+            for(let i=0; i<features[f].geometry.coordinates.length; i++){
+                let polycoords = features[f].geometry.coordinates[i];
                 ctx.beginPath()
                 ctx.moveTo(...convertToXY(polycoords[0][0],polycoords[0][1],ctx,zoom,moved))
                 for(var j=1; j<polycoords.length; j++){

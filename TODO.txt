@@ -1,0 +1,11 @@
+MyFormat(tm) of Todo
+
+/ - Not started
+* - In progress
+X - Completed
+# - On Hold
+! - Dropped
+
+
+{/} Debugging
+  [/] Fix problem when changing the date doesn't work.

@@ -1,21 +1,4 @@
 
-const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31]
-const leapmonthdays = [31,29,31,30,31,30,31,31,30,31,30,31]
-function isleapyear(year){
-    if(year%4==0){
-        if(year%100==0){
-            if(year%400==0){
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
-    }
-    return false;
-}
-
 class Time extends Date{
     /**
      * Time object with options to convert timezones :)
@@ -32,6 +15,7 @@ class Time extends Date{
      * @param {Number} m 
      */
     convertTimeZone(date,h,m,implace,log){
+        /*
         var newdate = implace?this:new Time(date);
         newdate.timeZoneOffset = date.timeZoneOffset;
         newdate = newdate.setToUTC(newdate,0,log)
@@ -40,9 +24,11 @@ class Time extends Date{
         newdate.setHours(newdate.getHours()+h)
         newdate.setMinutes(newdate.getMinutes()+m)
         newdate.timeZoneOffset = Math.sign(h)*(Math.abs(h)*60+m);
-        return newdate;
+        return newdate;*/
+        
     }
     setToUTC(date,implace,log){
+        /*
         var newdate = implace?this:new Time(date);
         newdate.timeZoneOffset = date.timeZoneOffset;
         if(log){
@@ -56,7 +42,11 @@ class Time extends Date{
         newdate.setMinutes(newdate.getMinutes()-minutes)
         newdate.timeZoneOffset = 0;
         
-        return newdate;
+        return newdate;*/
+        let epochtime = date.getTime();
+        let newdate = implace?this:new Time();
+        newdate.timeZoneOffset = date.timeZoneOffset;
+
     }
     returnSimplifiedString(returnDate = true,returnSeconds = true){
         var hours = this.returnHours();
