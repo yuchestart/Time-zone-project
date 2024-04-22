@@ -28,7 +28,7 @@ class TableElement{
      * @param {Time} time 
      */
     getTime(time){
-        return this.isLocaltime?new Time():time.convertTimeZone(time,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60);
+        return this.isLocaltime?new Time():Time.convertTimeZone(time,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60);
     }
     /**
      * 
@@ -36,7 +36,7 @@ class TableElement{
      */
     setCustomTime(time){
         this.customtime=time;
-        this.customtime = this.customtime.convertTimeZone(this.customtime,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60)
+        this.customtime = Time.convertTimeZone(this.customtime,(this.utcdifference-this.utcdifference%60)/60,this.utcdifference%60)
         this.updateHTML()
     }
     updateTime(){
@@ -151,9 +151,8 @@ function updateCustomTime(tableElement){
     var utcminutes = Math.abs(utc)%60
     //utchours = utchours<10?"0"+utchours.toString():utchours.toString();
     //utcminutes = utcminutes<10?"0"+utcminutes.toString():utcminutes.toString();
-    var newtime = new Time();
-    console.dir(newtime)
-    newtime = newtime.convertTimeZone(newtime,utchours,utcminutes)
+    
+    let newtime = Time.convertTimeZone(new Time(),utchours,utcminutes)
     newtime.setFullYear(parseInt(date.slice(0,4)));
     newtime.setMonth(parseInt(date.slice(5,7))-1)
     newtime.setDate(parseInt(date.slice(8,11)))

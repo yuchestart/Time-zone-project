@@ -7,5 +7,8 @@ X - Completed
 ! - Dropped
 
 
-{/} Debugging
-  [/] Fix problem when changing the date doesn't work.
+{X} Debugging
+  [X] Fix problem when changing the date doesn't work.
+
+{/} Performance
+  [/] Switch from your half-effective mapping engine to leaflet
